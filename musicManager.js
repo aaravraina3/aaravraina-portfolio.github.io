@@ -103,26 +103,16 @@ class MusicManager {
       }
     }, { once: true });
 
-    // Page visibility change - respect user's mute preference
+    // Page visibility change - keep music playing regardless of tab switching
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        // Page hidden - pause music but remember state
-        if (this.isPlaying && !this.userMuted) {
-          this.pauseMusic();
-        }
-      } else {
-        // Page visible - only resume if user hadn't muted
-        if (!this.userMuted && this.backgroundMusic) {
-          this.resumeMusic();
-        }
-      }
+      console.log('Page visibility changed:', document.hidden ? 'hidden' : 'visible');
+      // Don't pause/resume on tab switch - keep music playing
     });
 
-    // Window focus - only resume if user hadn't muted
+    // Window focus - keep music playing
     window.addEventListener('focus', () => {
-      if (!this.userMuted && this.backgroundMusic) {
-        this.resumeMusic();
-      }
+      console.log('Window focused - music should continue playing');
+      // Don't change music state on focus
     });
 
     // Navigation hover effects (only on home page)
@@ -138,6 +128,8 @@ class MusicManager {
   }
 
   toggleMusic() {
+    console.log('Toggle music called, current state:', { userMuted: this.userMuted, isPlaying: this.isPlaying });
+    
     if (this.userMuted) {
       this.unmuteMusic();
     } else {
@@ -204,10 +196,15 @@ class MusicManager {
     const mutedIcon = `<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>`;
     const playingIcon = `<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77z"/>`;
     
-    // Show muted icon when user has muted, playing icon when not muted
-    // If music hasn't started yet, show the playing icon (ready to play)
-    this.muteIcon.innerHTML = this.userMuted ? mutedIcon : playingIcon;
-    console.log('Icon updated to:', this.userMuted ? 'muted' : 'playing');
+    // Show muted icon ONLY when user has muted
+    // Show playing icon when user hasn't muted (regardless of isPlaying state)
+    const shouldShowMutedIcon = this.userMuted;
+    this.muteIcon.innerHTML = shouldShowMutedIcon ? mutedIcon : playingIcon;
+    
+    console.log('Icon updated to:', shouldShowMutedIcon ? 'muted' : 'playing', {
+      userMuted: this.userMuted,
+      isPlaying: this.isPlaying
+    });
   }
 
   fadeToHover() {
@@ -271,9 +268,13 @@ class MusicManager {
   }
 
   startMusicOnInteraction() {
-    if (this.userMuted || this.isPlaying) return;
+    if (this.userMuted || this.isPlaying) {
+      console.log('Music start blocked:', { userMuted: this.userMuted, isPlaying: this.isPlaying });
+      return;
+    }
     
     if (this.backgroundMusic) {
+      console.log('Attempting to start music...');
       this.backgroundMusic.play().then(() => {
         this.isPlaying = true;
         this.updateMuteIcon();
@@ -281,7 +282,16 @@ class MusicManager {
       }).catch(e => {
         console.log('Music start failed:', e);
         this.isPlaying = false;
+        // Try again after a short delay
+        setTimeout(() => {
+          if (!this.isPlaying && !this.userMuted) {
+            console.log('Retrying music start...');
+            this.startMusicOnInteraction();
+          }
+        }, 1000);
       });
+    } else {
+      console.log('No background music element found');
     }
   }
 

@@ -41,6 +41,14 @@
   3. Volume controls may not work properly.
   4. Music may not persist correctly between page changes.
 
+## 12. Purple Pointer Missing for About Section
+- **Description:** The purple pointer/cursor effect is missing from the About section.
+- **Location:** about.html
+- **Steps to Reproduce:**
+  1. Go to About Me section.
+  2. Move mouse around - no purple pointer effect visible.
+- **Note:** This is a planned feature to be implemented later.
+
 ---
 
 Add new bugs below as they are discovered.
