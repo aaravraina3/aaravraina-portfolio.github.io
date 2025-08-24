@@ -684,7 +684,7 @@
             </div>
           </div>
           
-                     <p>Tech has been part of my life for as long as I can remember. As a toddler, I was dismantling remotes and rewiring toys. By middle school, I was building computers and teaching myself to code. <span style="background: rgba(255, 0, 255, 0.3); color: #ffffff;">At 17, online chess led me to discover a vulnerability in the school's online chess platform that used a weak random seed that reset daily. Built a program that could predict opponent moves in their "random" practice matches. Posted about it on the chess forums and the platform devs reached out (paid me to help patch it, <em style="color: #00ffff;">ethically, of course</em>), and was hired to help fix their system.</span> Since then, I've been obsessed with finding these hidden patterns everywhere - using code to decode systems that everyone else assumes are random. Since then, I've been obsessed with finding ways to apply algorithmic reasoning—through machine learning, game theory, and probabilistic thinking—to real-world conflict and decision-making.</p>
+                     <p>Tech has been part of my life for as long as I can remember. As a toddler, I was dismantling remotes and rewiring toys. By middle school, I was building computers and teaching myself to code. <span style="background: rgba(255, 0, 255, 0.3); color: #ffffff;">At 17, online chess led me to discover a vulnerability in an online chess platform that used a weak random seed that reset daily. Built a program that could predict opponent moves in their "random" practice matches. Posted about it on the chess forums and the platform devs reached out (paid me to help patch it, <em style="color: #00ffff;">ethically, of course</em>), and was hired to help fix their system.</span> Since then, I've been obsessed with finding these hidden patterns everywhere - using code to decode systems that everyone else assumes are random. Since then, I've been obsessed with finding ways to apply algorithmic reasoning—through machine learning, game theory, and probabilistic thinking—to real-world conflict and decision-making.</p>
 
                     <p>I'm excited by projects that are <strong style="color: #ff00ff;">ambitious</strong>, <em style="color: #00ffff;">creative</em>, and <mark style="background: rgba(0, 255, 255, 0.15); color: #00ffff; padding: 0.2rem 0.4rem; border-radius: 4px;">technically challenging</mark>. I enjoy turning complex ideas into intuitive and functional digital experiences, whether it's a rough concept or a fully formed vision. When I'm not studying or coding, you'll find me at the gym finishing training with my <a href="https://www.instagram.com/northeasternbjj/" target="_blank" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">BJJ team</a> and pushing my limits with <a href="https://hevy.com/user/araina3" target="_blank" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">lifting and running</a>. I also like to play poker (my main source of income), and eat ramen (my main source of expenses).</p>
         </div>
@@ -877,7 +877,7 @@
   <style>
     /* Custom purple cursor for about page */
     body {
-      cursor: none !important;
+      cursor: none;
     }
     
     /* Purple custom cursor */
@@ -901,14 +901,14 @@
       opacity: 1 !important;
     }
     
-    /* Ensure cursor is visible on all elements */
-    * {
-      cursor: none !important;
+    /* Only hide cursor on body, not on all elements */
+    body * {
+      cursor: none;
     }
     
     /* But allow pointer cursor on clickable elements */
     a, button, .clickable, .project-card {
-      cursor: none !important;
+      cursor: none;
     }
   </style>
 
@@ -917,6 +917,69 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Register GSAP plugins
       gsap.registerPlugin(ScrollTrigger);
+      
+      // Custom purple cursor - MOVED INSIDE DOMContentLoaded
+      const customCursor = document.getElementById('custom-cursor');
+      if (customCursor) {
+        console.log('Custom cursor found, setting up mouse tracking');
+        
+        // Ensure cursor is visible initially
+        customCursor.style.display = 'block';
+        customCursor.style.opacity = '1';
+        customCursor.style.visibility = 'visible';
+        
+        // Mouse move tracking
+        document.addEventListener('mousemove', (e) => {
+          customCursor.style.left = e.clientX + 'px';
+          customCursor.style.top = e.clientY + 'px';
+          customCursor.style.display = 'block';
+          customCursor.style.opacity = '1';
+          customCursor.style.visibility = 'visible';
+        });
+        
+        // Show cursor on any mouse activity
+        document.addEventListener('mouseenter', () => {
+          customCursor.style.display = 'block';
+          customCursor.style.opacity = '1';
+          customCursor.style.visibility = 'visible';
+        });
+        
+        document.addEventListener('mousedown', () => {
+          customCursor.style.display = 'block';
+          customCursor.style.opacity = '1';
+          customCursor.style.visibility = 'visible';
+        });
+        
+        document.addEventListener('mouseup', () => {
+          customCursor.style.display = 'block';
+          customCursor.style.opacity = '1';
+          customCursor.style.visibility = 'visible';
+        });
+        
+        // Hide cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+          customCursor.style.opacity = '0';
+          customCursor.style.visibility = 'hidden';
+        });
+        
+        // Ensure cursor is visible on scroll
+        document.addEventListener('scroll', () => {
+          customCursor.style.display = 'block';
+          customCursor.style.opacity = '1';
+          customCursor.style.visibility = 'visible';
+        });
+        
+        // Force cursor visibility every 100ms as backup
+        setInterval(() => {
+          if (customCursor.style.opacity === '0' || customCursor.style.visibility === 'hidden') {
+            customCursor.style.opacity = '1';
+            customCursor.style.visibility = 'visible';
+          }
+        }, 100);
+        
+      } else {
+        console.log('Custom cursor element not found');
+      }
       
       // Animate profile text elements on scroll
       gsap.fromTo('.profile-text h2', 
@@ -1024,69 +1087,6 @@
         );
       });
     });
-
-    // Custom purple cursor
-    const customCursor = document.getElementById('custom-cursor');
-    if (customCursor) {
-      console.log('Custom cursor found, setting up mouse tracking');
-      
-      // Ensure cursor is visible initially
-      customCursor.style.display = 'block';
-      customCursor.style.opacity = '1';
-      customCursor.style.visibility = 'visible';
-      
-      // Mouse move tracking
-      document.addEventListener('mousemove', (e) => {
-        customCursor.style.left = e.clientX + 'px';
-        customCursor.style.top = e.clientY + 'px';
-        customCursor.style.display = 'block';
-        customCursor.style.opacity = '1';
-        customCursor.style.visibility = 'visible';
-      });
-      
-      // Show cursor on any mouse activity
-      document.addEventListener('mouseenter', () => {
-        customCursor.style.display = 'block';
-        customCursor.style.opacity = '1';
-        customCursor.style.visibility = 'visible';
-      });
-      
-      document.addEventListener('mousedown', () => {
-        customCursor.style.display = 'block';
-        customCursor.style.opacity = '1';
-        customCursor.style.visibility = 'visible';
-      });
-      
-      document.addEventListener('mouseup', () => {
-        customCursor.style.display = 'block';
-        customCursor.style.opacity = '1';
-        customCursor.style.visibility = 'visible';
-      });
-      
-      // Hide cursor when leaving window
-      document.addEventListener('mouseleave', () => {
-        customCursor.style.opacity = '0';
-        customCursor.style.visibility = 'hidden';
-      });
-      
-      // Ensure cursor is visible on scroll
-      document.addEventListener('scroll', () => {
-        customCursor.style.display = 'block';
-        customCursor.style.opacity = '1';
-        customCursor.style.visibility = 'visible';
-      });
-      
-      // Force cursor visibility every 100ms as backup
-      setInterval(() => {
-        if (customCursor.style.opacity === '0' || customCursor.style.visibility === 'hidden') {
-          customCursor.style.opacity = '1';
-          customCursor.style.visibility = 'visible';
-        }
-      }, 100);
-      
-    } else {
-      console.log('Custom cursor element not found');
-    }
 
     // Navigation animation
     document.addEventListener('DOMContentLoaded', () => {
