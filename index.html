@@ -225,10 +225,10 @@
     /* 3D Cube Container */
     #cube-container {
       position: fixed;
-      top: 0;
+      top: 8vh;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: 84vh;
       z-index: 50;
       pointer-events: none;
       opacity: 1;
@@ -439,23 +439,25 @@
     .about-typing-card {
       position: fixed !important;
       left: 50% !important;
-      top: 50% !important;
-      transform: translate(-50%, -50%) rotate(-3deg) !important;
+      top: 60% !important;
+      transform: translate(-50%, -50%) !important;
       z-index: 500;
-      width: min(20rem, 58vw) !important;
-      height: clamp(5rem, 8vw, 10rem) !important;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 0, 255, 0.5);
-      border-radius: 0.8rem;
+      width: min(22rem, 60vw) !important;
+      min-height: 5.5rem !important;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(14px);
+      border: 2px solid #ff00ff99;
+      border-radius: 1.1rem;
       box-shadow: 
-        0 0 20px rgba(255, 0, 255, 0.4),
-        0 0 40px rgba(0, 255, 255, 0.2),
-        inset 0 1px 0 rgba(255, 0, 255, 0.3);
+        0 0 28px rgba(255, 0, 255, 0.35),
+        0 0 60px rgba(0, 255, 255, 0.18),
+        0 2px 12px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255, 0, 255, 0.18);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
+      padding: 1.2rem 1.5rem;
+      transition: top 0.4s cubic-bezier(.4,1.4,.6,1);
     }
 
     .about-typed-text {
@@ -584,10 +586,42 @@
     <div>Raina</div>
   </div>
 
+
   <!-- About page typing card -->
   <div class="about-typing-card">
     <h2 class="about-typed-text">Software Developer & Mathematician</h2>
   </div>
+
+  <!-- Poker Nerd Tag -->
+  <div class="poker-nerd-tag">
+    <span>♠️ Poker Nerd</span>
+  </div>
+    /* Poker Nerd Tag Styling */
+    .poker-nerd-tag {
+      position: fixed;
+      left: 50%;
+      top: calc(60% + 4.5rem);
+      transform: translateX(-50%);
+      z-index: 600;
+      background: rgba(0,0,0,0.55);
+      border: 2px solid #ff00ff;
+      border-radius: 1.2rem;
+      box-shadow: 0 0 18px #ff00ff55, 0 0 30px #00ffff33;
+      padding: 0.7rem 2.2rem;
+      font-family: 'Fira Mono', 'Courier New', monospace;
+      font-size: 1.25rem;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-align: center;
+      text-shadow: 0 0 8px #ff00ff99, 0 0 12px #00ffff66;
+      user-select: none;
+      pointer-events: none;
+      animation: pokerNerdFadeIn 1.2s cubic-bezier(.4,1.4,.6,1) 0.5s both;
+    }
+    @keyframes pokerNerdFadeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(-30px) scale(0.95); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+    }
 
 
   <!-- About Container -->

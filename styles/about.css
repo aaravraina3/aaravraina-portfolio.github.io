@@ -1,3 +1,10 @@
+/* Fix cursor for navigation links to use pointer */
+.bottom-nav a,
+.bottom-nav .nav-link,
+.bottom-nav .nav-close-btn,
+.mobile-menu-btn {
+  cursor: url('../Images/Icons/PurplePointer.png'), pointer !important;
+}
 /* Base styles */
 html, body {
   -webkit-overflow-scrolling: touch;
