@@ -1659,52 +1659,49 @@
         <div class="cards-container experience-cards">
           
           <div class="card">
-            <div class="card" id="experience-card-1" style="display: block;">
-              <div class="card-header">
-                <h3>Chief of Internal Insights <span class="card-arrow">↗</span></h3>
-                <div class="card-company">Generate Product Development Studio</div>
-                <div class="card-location">Jul. 2025 – Present</div>
-              </div>
-              <div class="card-preview">
-                <p>Building data analytics infrastructure for 150+ member organization, leading analytics team with direct reports managing sub-teams across multiple project verticals.</p>
-              </div>
+            <div class="card-header">
+              <h3>Chief of Internal Insights <span class="card-arrow">↗</span></h3>
+              <div class="card-company">Generate Product Development Studio</div>
+              <div class="card-location">Jul. 2025 – Present</div>
             </div>
-            <div class="card" id="experience-card-2" style="display: none;">
-              <div class="card-header">
-                <h3>Software Engineering Intern <span class="card-arrow">↗</span></h3>
-                <div class="card-company">GetFeedz Inc.</div>
-                <div class="card-location">Jun. 2024 – Aug. 2024</div>
-              </div>
-              <div class="card-preview">
-                <p>Developed responsive React components reducing page load time by 35% for 10K+ daily active users through code optimization and lazy loading implementation.</p>
-              </div>
+            <div class="card-preview">
+              <p>Building data analytics infrastructure for 150+ member organization, leading analytics team with direct reports managing sub-teams across multiple project verticals.</p>
             </div>
-            <div class="card" id="experience-card-3" style="display: none;">
-              <div class="card-header">
-                <h3>Data Analysis Research Assistant <span class="card-arrow">↗</span></h3>
-                <div class="card-company">International Hellenic University</div>
-                <div class="card-location">May 2024 – Jul. 2024</div>
-              </div>
-              <div class="card-preview">
-                <p>Designed efficient algorithms using Python and NumPy processing 1M+ healthcare records in under 30 seconds, reduced query latency by 10x through PostgreSQL optimization.</p>
-              </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Software Engineering Intern <span class="card-arrow">↗</span></h3>
+              <div class="card-company">GetFeedz Inc.</div>
+              <div class="card-location">Jun. 2024 – Aug. 2024</div>
             </div>
-            <div class="card" id="experience-card-4" style="display: none;">
-              <div class="card-header">
-                <h3>Executive Director <span class="card-arrow">↗</span></h3>
-                <div class="card-company">NutriCycle Environmental Initiative</div>
-                <div class="card-location">Nov. 2023 – Jul. 2024</div>
-              </div>
-              <div class="card-preview">
-                <p>Founded and led initiative mobilizing 200+ students to reduce food waste by 30%, built cloud-based tracking platform using Flask and PostgreSQL deployed on Render.</p>
-              </div>
+            <div class="card-preview">
+              <p>Developed responsive React components reducing page load time by 35% for 10K+ daily active users through code optimization and lazy loading implementation.</p>
             </div>
-            <div style="text-align:center; margin:1rem 0;">
-              <button onclick="showExperienceCard(1)" style="background: rgba(255, 0, 255, 0.3); border: 2px solid #ff00ff; color: #ffffff; padding: 0.5rem 1rem; margin: 0 0.25rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">1</button>
-              <button onclick="showExperienceCard(2)" style="background: transparent; border: 2px solid #ffffff; color: #ffffff; padding: 0.5rem 1rem; margin: 0 0.25rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">2</button>
-              <button onclick="showExperienceCard(3)" style="background: transparent; border: 2px solid #ffffff; color: #ffffff; padding: 0.5rem 1rem; margin: 0 0.25rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">3</button>
-              <button onclick="showExperienceCard(4)" style="background: transparent; border: 2px solid #ffffff; color: #ffffff; padding: 0 0.25rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">4</button>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Data Analysis Research Assistant <span class="card-arrow">↗</span></h3>
+              <div class="card-company">International Hellenic University</div>
+              <div class="card-location">May 2024 – Jul. 2024</div>
             </div>
+            <div class="card-preview">
+              <p>Designed efficient algorithms using Python and NumPy processing 1M+ healthcare records in under 30 seconds, reduced query latency by 10x through PostgreSQL optimization.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Executive Director <span class="card-arrow">↗</span></h3>
+              <div class="card-company">NutriCycle Environmental Initiative</div>
+              <div class="card-location">Nov. 2023 – Jul. 2024</div>
+            </div>
+            <div class="card-preview">
+              <p>Founded and led initiative mobilizing 200+ students to reduce food waste by 30%, built cloud-based tracking platform using Flask and PostgreSQL deployed on Render.</p>
+            </div>
+          </div>
+
         </div>
 
         <!-- Spacer between sections -->
@@ -1756,38 +1753,7 @@
   </div>
 
   <script>
-    // Show only one experience card at a time
-    function showExperienceCard(n) {
-      console.log('Showing experience card:', n);
-      for (let i = 1; i <= 4; i++) {
-        const card = document.getElementById('experience-card-' + i);
-        if (card) {
-          if (i === n) {
-            card.style.display = 'block';
-            card.style.opacity = '1';
-            card.style.transform = 'scale(1)';
-          } else {
-            card.style.display = 'none';
-            card.style.opacity = '0';
-            card.style.transform = 'scale(0.95)';
-          }
-        }
-      }
-      
-      // Update button styling
-      const buttons = document.querySelectorAll('.experience-cards button');
-      buttons.forEach((btn, index) => {
-        if (index + 1 === n) {
-          btn.style.background = 'rgba(255, 0, 255, 0.3)';
-          btn.style.borderColor = '#ff00ff';
-          btn.style.color = '#ffffff';
-        } else {
-          btn.style.background = 'transparent';
-          btn.style.borderColor = '#ffffff';
-          btn.style.color = '#ffffff';
-        }
-      });
-    }
+    // Experience cards are now all visible at once - no spotlight functionality needed
     // Scroll to top on page load
     window.addEventListener('load', () => {
       window.scrollTo(0, 0);
