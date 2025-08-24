@@ -11,9 +11,13 @@ class MusicManager {
     this.currentFadeInterval = null;
     
     // Load saved mute preference from localStorage
+    // Default to unmuted (music ON) for new visitors
     const savedMuteState = localStorage.getItem('musicMuted');
     if (savedMuteState === 'true') {
       this.userMuted = true;
+    } else {
+      // If no saved state or explicitly false, music should be ON
+      this.userMuted = false;
     }
     
     console.log('MusicManager initialized, userMuted:', this.userMuted);
@@ -50,6 +54,11 @@ class MusicManager {
     // Initialize mute icon to correct state
     this.updateMuteIcon();
     console.log('Music setup complete, icon initialized to:', this.userMuted ? 'muted' : 'playing');
+    
+    // For new visitors, ensure music starts playing
+    if (!this.userMuted) {
+      console.log('New visitor detected, attempting to start music');
+    }
 
     // Setup event listeners
     this.setupEventListeners();
@@ -235,13 +244,6 @@ class MusicManager {
 
   attemptAutoStart() {
     if (this.userMuted) return; // Don't auto-start if user muted
-    
-    // Check localStorage for saved preference
-    const savedMuteState = localStorage.getItem('musicMuted');
-    if (savedMuteState === 'true') {
-      this.userMuted = true;
-      return;
-    }
     
     if (!this.isPlaying && this.backgroundMusic) {
       this.backgroundMusic.play().then(() => {
