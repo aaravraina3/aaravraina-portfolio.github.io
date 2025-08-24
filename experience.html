@@ -1489,7 +1489,7 @@
           </div>
           
           <!-- Bio Section -->
-          <div style="color: #ffffff; font-family: 'Inter', Arial, sans-serif; font-size: clamp(0.9rem, 3vw, 1.4rem); line-height: 1.6; margin: 1rem 0; opacity: 1;">I'm a Computer Science & Business Administration student at Northeastern University, currently serving as Chief of Internal Insights at Generate, passionate about data analytics, software engineering, and building scalable solutions.</div>
+          <div style="color: #ffffff; font-family: 'Inter', Arial, sans-serif; font-size: clamp(0.9rem, 3vw, 1.4rem); line-height: 1.6; margin: 1rem 0; opacity: 1;">I'm a Computer Science & Finance student at Northeastern University, currently serving as Chief of Internal Insights at Generate, passionate about data analytics, software engineering, and building scalable solutions.</div>
           
           
           <!-- Navigation Buttons -->
@@ -1606,7 +1606,7 @@
           <div class="hello-section" style="font-size: min(7.5vw, 2.4rem); font-weight: 400; font-family: 'Anton', Arial, sans-serif; color: #ffffff; margin: 0; text-align: left; line-height: 1.05; opacity: 0.3; transition: opacity 0.6s ease; letter-spacing: 0.02em;">Hello. I am Aarav</div>
           
           <!-- Bio Section - positioned relative to header -->
-          <div class="hello-section" style="color: #ffffff; font-family: 'Inter', Arial, sans-serif; font-size: 1.4rem; line-height: 1.6; margin: 2rem 0 1rem 0; opacity: 0.3; transition: opacity 0.6s ease;">I am a Computer Science & Business Administration student at Northeastern University, currently serving as Chief of Internal Insights at Generate, passionate about data analytics, software engineering, and building scalable solutions.</div>
+          <div class="hello-section" style="color: #ffffff; font-family: 'Inter', Arial, sans-serif; font-size: 1.4rem; line-height: 1.6; margin: 2rem 0 1rem 0; opacity: 0.3; transition: opacity 0.6s ease;">I am a Computer Science & Finance student at Northeastern University, currently serving as Chief of Internal Insights at Generate, passionate about data analytics, software engineering, and building scalable solutions.</div>
           
           
           <!-- Navigation Buttons - positioned relative to header -->
@@ -1637,7 +1637,7 @@
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <h3>Bachelor of Science in Computer Science & Business Administration (Finance)</h3>
+              <h3>Bachelor of Science in Computer Science & Finance</h3>
               <div class="timeline-school">Northeastern University • Boston, MA</div>
               <div class="timeline-details">
                 <div class="course-grid">
@@ -1649,7 +1649,7 @@
                   <span class="course-pill">Calculus</span>
                   <span class="course-pill">Statistics</span>
                 </div>
-                <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #00ffff;">GPA: 3.51 • Sep. 2024 – May 2028</div>
+                <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #00ffff;">Sep. 2024 – May 2028</div>
               </div>
             </div>
           </div>
@@ -1700,10 +1700,10 @@
               </div>
             </div>
             <div style="text-align:center; margin:1rem 0;">
-              <button onclick="showExperienceCard(1)">1</button>
-              <button onclick="showExperienceCard(2)">2</button>
-              <button onclick="showExperienceCard(3)">3</button>
-              <button onclick="showExperienceCard(4)">4</button>
+              <button onclick="showExperienceCard(1)" style="background: rgba(255, 0, 255, 0.3); border: 2px solid #ff00ff; color: #ffffff; padding: 0.5rem 1rem; margin: 0 0.25rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">1</button>
+              <button onclick="showExperienceCard(2)" style="background: transparent; border: 2px solid #ffffff; color: #ffffff; padding: 0.5rem 1rem; margin: 0 0.25rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">2</button>
+              <button onclick="showExperienceCard(3)" style="background: transparent; border: 2px solid #ffffff; color: #ffffff; padding: 0.5rem 1rem; margin: 0 0.25rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">3</button>
+              <button onclick="showExperienceCard(4)" style="background: transparent; border: 2px solid #ffffff; color: #ffffff; padding: 0 0.25rem; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', Arial, sans-serif; font-weight: 500;">4</button>
             </div>
         </div>
 
@@ -1739,7 +1739,7 @@
 
         <!-- Resume Link beneath research -->
         <div style="text-align: center; margin: 4rem 0;">
-          <a href="Assets/Resume.pdf" target="_blank" class="resume-link" style="display: inline-block; background: transparent; border: 2px solid #ffffff; color: #ffffff; font-family: 'Montserrat', 'Inter', Arial, sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: none; letter-spacing: 0.05em; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; position: relative; overflow: hidden;">
+          <a href="Resume.pdf" target="_blank" class="resume-link" style="display: inline-block; background: transparent; border: 2px solid #ffffff; color: #ffffff; font-family: 'Montserrat', 'Inter', Arial, sans-serif; font-size: 1.1rem; font-weight: 600; text-transform: none; letter-spacing: 0.05em; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; transition: all 0.3s ease; position: relative; overflow: hidden;">
             <span style="position: relative; z-index: 2;">See My Resume</span>
             <div style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); transition: left 0.6s ease;"></div>
           </a>
@@ -1758,10 +1758,35 @@
   <script>
     // Show only one experience card at a time
     function showExperienceCard(n) {
+      console.log('Showing experience card:', n);
       for (let i = 1; i <= 4; i++) {
         const card = document.getElementById('experience-card-' + i);
-        if (card) card.style.display = (i === n) ? 'block' : 'none';
+        if (card) {
+          if (i === n) {
+            card.style.display = 'block';
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          } else {
+            card.style.display = 'none';
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
+          }
+        }
       }
+      
+      // Update button styling
+      const buttons = document.querySelectorAll('.experience-cards button');
+      buttons.forEach((btn, index) => {
+        if (index + 1 === n) {
+          btn.style.background = 'rgba(255, 0, 255, 0.3)';
+          btn.style.borderColor = '#ff00ff';
+          btn.style.color = '#ffffff';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.borderColor = '#ffffff';
+          btn.style.color = '#ffffff';
+        }
+      });
     }
     // Scroll to top on page load
     window.addEventListener('load', () => {
