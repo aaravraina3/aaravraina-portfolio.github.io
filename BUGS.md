@@ -1,3 +1,20 @@
+# 5. No Volume Slider
+- **Description:** There is no volume slider for the background or hover music.
+- **Location:** All pages with music controls.
+
+# 6. No Song Changer
+- **Description:** There is no way to change the background or hover song.
+- **Location:** All pages with music controls.
+
+# 7. Projects Section Not Done
+- **Description:** The projects section is incomplete or not finished.
+- **Location:** Projects.html and related files.
+# 4. Flask Logo Blackness in Stack
+- **Description:** The Flask logo in the stack section is too dark/black, making it hard to see against the background.
+- **Location:** Frameworks stack section (about.html).
+- **Steps to Reproduce:**
+  1. Go to the Frameworks section in About Me.
+  2. Observe the Flask logo is not clearly visible due to its black color.
 # 3. 'Learn more' Underlined Links in About Me Not Working
 - **Description:** The underlined 'learn more' words in the About Me section do not work (no link or action).
 - **Location:** About Me section (about.html).
