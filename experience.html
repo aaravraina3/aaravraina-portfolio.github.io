@@ -1684,37 +1684,52 @@
         <div class="cards-container experience-cards">
           
           <div class="card">
-            <div class="card-header">
-              <h3>Data & Analytics <span class="card-arrow">↗</span></h3>
-              <div class="card-company">Flushing CPA Tax Center</div>
-              <div class="card-location">Spring 2024</div>
+            <div class="card" id="experience-card-1" style="display: block;">
+              <div class="card-header">
+                <h3>Data Engineering Lead <span class="card-arrow">↗</span></h3>
+                <div class="card-company">@ Generate</div>
+                <div class="card-location">Summer 2025</div>
+              </div>
+              <div class="card-preview">
+                <p>Leading my own team @ Generate to build a Data Engineering pipeline from scratch!</p>
+              </div>
             </div>
-            <div class="card-preview">
-              <p>Designed automated ETL pipelines for processing large-scale tax data & developed predictive regression models to calculate quarterly tax obligations.</p>
+            <div class="card" id="experience-card-2" style="display: none;">
+              <div class="card-header">
+                <h3>Data & Analytics <span class="card-arrow">↗</span></h3>
+                <div class="card-company">Flushing CPA Tax Center</div>
+                <div class="card-location">Spring 2024</div>
+              </div>
+              <div class="card-preview">
+                <p>Designed automated ETL pipelines for processing large-scale tax data & developed predictive regression models to calculate quarterly tax obligations.</p>
+              </div>
             </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3>Legal Research Intern <span class="card-arrow">↗</span></h3>
-              <div class="card-company">Offices of Jonathan Spodnick</div>
-              <div class="card-location">Fall 2023</div>
+            <div class="card" id="experience-card-3" style="display: none;">
+              <div class="card-header">
+                <h3>Legal Research Intern <span class="card-arrow">↗</span></h3>
+                <div class="card-company">Offices of Jonathan Spodnick</div>
+                <div class="card-location">Fall 2023</div>
+              </div>
+              <div class="card-preview">
+                <p>Conducted legal research and case preparation for personal injury litigation and developed automated tools to streamline document processing and case analysis workflows.</p>
+              </div>
             </div>
-            <div class="card-preview">
-              <p>Conducted legal research and case preparation for personal injury litigation and developed automated tools to streamline document processing and case analysis workflows.</p>
+            <div class="card" id="experience-card-4" style="display: none;">
+              <div class="card-header">
+                <h3>Fintech Analyst <span class="card-arrow">↗</span></h3>
+                <div class="card-company">CITIC Securities</div>
+                <div class="card-location">Summer 2023</div>
+              </div>
+              <div class="card-preview">
+                <p>Supported major financial transactions and market analysis for billion-dollar deals while conducting regulatory impact assessments and client presentations.</p>
+              </div>
             </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3>Fintech Analyst <span class="card-arrow">↗</span></h3>
-              <div class="card-company">CITIC Securities</div>
-              <div class="card-location">Summer 2023</div>
+            <div style="text-align:center; margin:1rem 0;">
+              <button onclick="showExperienceCard(1)">1</button>
+              <button onclick="showExperienceCard(2)">2</button>
+              <button onclick="showExperienceCard(3)">3</button>
+              <button onclick="showExperienceCard(4)">4</button>
             </div>
-            <div class="card-preview">
-              <p> Supported major financial transactions and market analysis for billion-dollar deals while conducting regulatory impact assessments and client presentations.</p>
-            </div>
-          </div>
         </div>
 
         <!-- Spacer between sections -->
@@ -1766,6 +1781,13 @@
   </div>
 
   <script>
+    // Show only one experience card at a time
+    function showExperienceCard(n) {
+      for (let i = 1; i <= 4; i++) {
+        const card = document.getElementById('experience-card-' + i);
+        if (card) card.style.display = (i === n) ? 'block' : 'none';
+      }
+    }
     // Scroll to top on page load
     window.addEventListener('load', () => {
       window.scrollTo(0, 0);
