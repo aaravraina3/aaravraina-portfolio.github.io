@@ -16,6 +16,7 @@ class MusicManager {
       this.userMuted = true;
     }
     
+    console.log('MusicManager initialized, userMuted:', this.userMuted);
     this.init();
   }
 
@@ -45,6 +46,10 @@ class MusicManager {
       this.hoverMusic.volume = 0;
       this.hoverMusic.currentTime = 25; // Start at 25 seconds
     }
+
+    // Initialize mute icon to correct state
+    this.updateMuteIcon(!this.userMuted);
+    console.log('Music setup complete, icon initialized to:', !this.userMuted ? 'playing' : 'muted');
 
     // Setup event listeners
     this.setupEventListeners();
