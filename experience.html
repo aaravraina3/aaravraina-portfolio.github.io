@@ -1622,8 +1622,8 @@
         </div>
         
         <!-- Profile Photo -->
-        <div class="profile-photo hello-visible" id="profilePhotoContainer">
-          <img src="Images/Solo.png" alt="Aarav Raina" id="profilePhoto" />
+        <div class="profile-photo hello-visible">
+          <img src="Images/Solo.png" alt="Aarav Raina" />
         </div>
       </div>
 
@@ -1658,7 +1658,7 @@
         <!-- Experience Section -->
         <div class="cards-container experience-cards">
           
-          <div class="card">
+          <div class="card experience-card" data-card="1">
             <div class="card-header">
               <h3>Chief of Internal Insights <span class="card-arrow">↗</span></h3>
               <div class="card-company">Generate Product Development Studio</div>
@@ -1669,7 +1669,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card experience-card" data-card="2">
             <div class="card-header">
               <h3>Software Engineering Intern <span class="card-arrow">↗</span></h3>
               <div class="card-company">GetFeedz Inc.</div>
@@ -1680,7 +1680,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card experience-card" data-card="3">
             <div class="card-header">
               <h3>Data Analysis Research Assistant <span class="card-arrow">↗</span></h3>
               <div class="card-company">International Hellenic University</div>
@@ -1691,7 +1691,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card experience-card" data-card="4">
             <div class="card-header">
               <h3>Executive Director <span class="card-arrow">↗</span></h3>
               <div class="card-company">NutriCycle Environmental Initiative</div>
@@ -1753,7 +1753,48 @@
   </div>
 
   <script>
-    // Experience cards are now all visible at once - no spotlight functionality needed
+    // Experience Spotlight System
+    document.addEventListener('DOMContentLoaded', () => {
+      const experienceCards = document.querySelectorAll('.experience-card');
+      
+      experienceCards.forEach(card => {
+        // Add hover effects
+        card.addEventListener('mouseenter', () => {
+          // Remove spotlight from all cards
+          experienceCards.forEach(c => {
+            c.classList.remove('spotlight');
+            c.style.opacity = '0.6';
+            c.style.transform = 'scale(0.95)';
+            c.style.filter = 'grayscale(20%)';
+          });
+          
+          // Add spotlight to current card
+          card.classList.add('spotlight');
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1.02)';
+          card.style.filter = 'grayscale(0%)';
+          card.style.boxShadow = '0 0 30px rgba(255, 0, 255, 0.3)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          // Remove spotlight from current card
+          card.classList.remove('spotlight');
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+          card.style.filter = 'grayscale(0%)';
+          card.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.1)';
+          
+          // Reset all cards to normal
+          experienceCards.forEach(c => {
+            c.style.opacity = '1';
+            c.style.transform = 'scale(1)';
+            c.style.filter = 'grayscale(0%)';
+            c.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.1)';
+          });
+        });
+      });
+    });
+    
     // Scroll to top on page load
     window.addEventListener('load', () => {
       window.scrollTo(0, 0);
@@ -2630,89 +2671,7 @@
 
   <!-- Music functionality is now handled by musicManager.js -->
 
-  <script>
-    // Profile Photo Image Switcher
-    document.addEventListener('DOMContentLoaded', () => {
-      const profilePhoto = document.getElementById('profilePhoto');
-      const profilePhotoContainer = document.getElementById('profilePhotoContainer');
-      
-      if (!profilePhoto || !profilePhotoContainer) return;
-      
-      // Image sources
-      const images = [
-        'Images/Solo.png',
-        'Images/Group.jpg',
-        'Images/Friends.jpg' // This will be the "OK" gesture photo
-      ];
-      
-      let currentImageIndex = 0;
-      let isAutoSwitching = true;
-      let autoSwitchInterval;
-      
-      // Function to switch to next image
-      function switchToNextImage() {
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        profilePhoto.src = images[currentImageIndex];
-        
-        // Add a subtle transition effect
-        profilePhoto.style.opacity = '0.8';
-        setTimeout(() => {
-          profilePhoto.style.opacity = '1';
-        }, 150);
-      }
-      
-      // Function to switch to specific image (OK gesture)
-      function switchToOKImage() {
-        currentImageIndex = 2; // Index 2 is the Friends.jpg (OK gesture)
-        profilePhoto.src = images[currentImageIndex];
-        profilePhoto.style.opacity = '0.8';
-        setTimeout(() => {
-          profilePhoto.style.opacity = '1';
-        }, 150);
-        
-        // Pause auto-switching temporarily
-        isAutoSwitching = false;
-        clearInterval(autoSwitchInterval);
-        
-        // Resume auto-switching after 5 seconds
-        setTimeout(() => {
-          isAutoSwitching = true;
-          startAutoSwitching();
-        }, 5000);
-      }
-      
-      // Start auto-switching
-      function startAutoSwitching() {
-        if (autoSwitchInterval) clearInterval(autoSwitchInterval);
-        
-        autoSwitchInterval = setInterval(() => {
-          if (isAutoSwitching) {
-            switchToNextImage();
-          }
-        }, 5000); // Switch every 5 seconds
-      }
-      
-      // Click handler to switch to OK gesture
-      profilePhotoContainer.addEventListener('click', switchToOKImage);
-      
-      // Start auto-switching
-      startAutoSwitching();
-      
-      // Add hover effect to indicate it's clickable
-      profilePhotoContainer.style.cursor = 'pointer';
-      profilePhotoContainer.title = 'Click to see OK gesture!';
-      
-      // Add subtle hover animation
-      profilePhotoContainer.addEventListener('mouseenter', () => {
-        profilePhotoContainer.style.transform = 'scale(1.05)';
-        profilePhotoContainer.style.transition = 'transform 0.3s ease';
-      });
-      
-      profilePhotoContainer.addEventListener('mouseleave', () => {
-        profilePhotoContainer.style.transform = 'scale(1)';
-      });
-    });
-  </script>
+
 
 </body>
 </html>
