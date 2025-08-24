@@ -674,9 +674,9 @@
         <div class="profile-text">
                     <h2>👋 Hi there. I'm <span style="color: #ff00ff;"><strong>Aarav Raina</strong></span> and welcome to my personal portfolio! I'm pursuing a Bachelor's in <em>Computer Science</em> and <em>Finance</em> at <span style="background: #ffffff; color: #990000; padding: 0 0.5rem; border-radius: 8px; border: 1px solid #990000; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;"><img src="Images/NEU.png" alt="Northeastern University" style="width: 1em; height: 1em; object-fit: contain;">Northeastern University</span>. I specialize in building <a href="#" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">full-stack systems</a>, large language models, and the occasional <a href="#" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">passion project</a> that keeps me up at night.</h2>
           
-          <div class="profile-image" style="text-align: center; margin: 2rem 0;">
-            <div id="profilePhotoContainer" style="display: inline-block; cursor: pointer; transition: all 0.3s ease;">
-              <img id="profilePhoto" src="Images/Solo.png" alt="Aarav Raina" style="width: 200px; height: 200px; object-fit: cover; border-radius: 1.2rem; box-shadow: 0 4px 18px #ff00ff33; border: 2px solid #ff00ff; transition: all 0.3s ease;" />
+          <div class="profile-image" style="text-align: center; margin: 3rem 0; display: flex; justify-content: center; align-items: center;">
+            <div id="profilePhotoContainer" style="display: inline-block; cursor: pointer; transition: all 0.3s ease; text-align: center;">
+              <img id="profilePhoto" src="Images/Solo.png" alt="Aarav Raina" style="width: 350px; height: 350px; object-fit: cover; border-radius: 1.5rem; box-shadow: 0 8px 32px rgba(255, 0, 255, 0.4); border: 3px solid #ff00ff; transition: all 0.3s ease; display: block; margin: 0 auto;" />
             </div>
           </div>
           
@@ -1070,6 +1070,11 @@
           }
         });
       });
+
+      // Auto-open all stack sections on page load to fix loading delay
+      document.querySelectorAll('.stack-section').forEach(section => {
+        section.classList.add('active');
+      });
     });
 
     // Scroll progress indicator
@@ -1193,8 +1198,7 @@
       // Image sources
       const images = [
         'Images/Solo.png',
-        'Images/Group.jpg',
-        'Images/Friends.jpg' // OK gesture photo
+        'Images/Group.jpg'
       ];
       
       let currentImageIndex = 0;
@@ -1213,9 +1217,9 @@
         }, 150);
       }
       
-      // Function to switch to specific image (OK gesture)
-      function switchToOKImage() {
-        currentImageIndex = 2; // Index 2 is the Friends.jpg (OK gesture)
+      // Function to switch to specific image (Group photo)
+      function switchToGroupImage() {
+        currentImageIndex = 1; // Index 1 is the Group.jpg
         profilePhoto.src = images[currentImageIndex];
         profilePhoto.style.opacity = '0.8';
         setTimeout(() => {
@@ -1244,15 +1248,15 @@
         }, 5000); // Switch every 5 seconds
       }
       
-      // Click handler to switch to OK gesture
-      profilePhotoContainer.addEventListener('click', switchToOKImage);
+      // Click handler to switch to Group photo
+      profilePhotoContainer.addEventListener('click', switchToGroupImage);
       
       // Start auto-switching
       startAutoSwitching();
       
       // Add hover effect to indicate it's clickable
       profilePhotoContainer.style.cursor = 'pointer';
-      profilePhotoContainer.title = 'Click to see OK gesture!';
+      profilePhotoContainer.title = 'Click to see group photo!';
       
       // Add subtle hover animation
       profilePhotoContainer.addEventListener('mouseenter', () => {

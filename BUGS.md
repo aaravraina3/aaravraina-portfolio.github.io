@@ -49,6 +49,15 @@
   2. Observe the cube animation as you interact or scroll.
   3. Notice the cube gets stuck and the animation/wording overlaps or jumps unexpectedly.
 
+## 9. Highlighted Words Not Clickable
+- **Description:** The highlighted/underlined words in various sections (like "full-stack systems", "passion project", etc.) are not clickable links yet.
+- **Location:** Multiple sections across the site where highlighted text appears.
+- **Steps to Reproduce:**
+  1. Look for highlighted/underlined text in About Me, Experience, or other sections.
+  2. Try to click on highlighted words like "full-stack systems" or "passion project".
+  3. Nothing happens; these are not functional links yet.
+- **Note:** This is a planned feature to be implemented later.
+
 ---
 
 Add new bugs below as they are discovered.

@@ -1435,6 +1435,89 @@
     }
     */
 
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      cursor: auto !important;
+    }
+    .modal-content {
+      background: linear-gradient(145deg, #1a0d2e, #16213e);
+      margin: 0;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 70vw;
+      max-width: 800px;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      border: 1px solid rgba(255, 0, 255, 0.2);
+      cursor: auto !important;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .modal.show .modal-content {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    .close {
+      color: #ffffff;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .close:hover {
+      color: #00ffff;
+    }
+    .modal h2 {
+      color: #ffffff;
+      font-family: 'Anton', Arial, sans-serif;
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      font-weight: 400;
+      margin: 0 0 0.5rem 0;
+    }
+    .modal .modal-company {
+      color: #00ffff;
+      font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+      font-weight: 600;
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      margin-bottom: 0.25rem;
+    }
+    .modal .modal-location {
+      color: #f5f5f5;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: clamp(0.7rem, 2vw, 0.875rem);
+      margin-bottom: 1rem;
+    }
+    .modal p {
+      color: #ffffff;
+      font-family: 'Inter', Arial, sans-serif;
+      font-size: clamp(0.8rem, 2.2vw, 1rem);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+    
+    /* Touch devices specific improvements */
+    @media (hover: none) and (pointer: coarse) {
+      .card {
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: rgba(255, 0, 255, 0.3) !important;
+        -webkit-touch-callout: none !important;
+      }
+    }
+
   </style>
 <script defer src="script.js"></script>
 </head>
@@ -2122,10 +2205,10 @@
           const totalHeight = rect.height;
           const visibilityRatio = totalHeight > 0 ? visibleHeight / totalHeight : 0;
           
-          // Different thresholds for different sections
-          let threshold = 0.3; // Default for education and experience
+          // Different thresholds for different sections - increased to delay spotlight changes
+          let threshold = 0.6; // Default for education and experience - increased from 0.3
           if (section.name === 'research') {
-            threshold = 0.5; // Higher threshold for research - needs more visibility to stay in focus
+            threshold = 0.7; // Higher threshold for research - increased from 0.5
           }
           
           // Check if we're close to footer for research section
@@ -2203,6 +2286,114 @@
       updateSectionVisibility();
       window.addEventListener('scroll', updateSectionVisibility);
       window.addEventListener('resize', updateSectionVisibility);
+    });
+
+    // Experience and Research data for modals
+    const experienceData = {
+      0: { // Chief of Internal Insights at Generate
+        title: "Chief of Internal Insights",
+        company: "Generate Product Development Studio",
+        location: "Jul. 2025 – Present • Boston, MA",
+        description: "• Building data analytics infrastructure from scratch for 150+ member organization; leading analytics team with direct reports managing sub-teams across multiple project verticals<br>&nbsp;<br>• Architecting Python pipelines (pandas, NumPy) tracking engagement metrics with PostgreSQL/Redis backend<br>&nbsp;<br>• Developing alumni tracking system connecting members with 10,000+ alumni using BeautifulSoup web scraping and Slack API integration; automating outreach campaigns resulting in 40+ mentorship connections<br>&nbsp;<br>• Presenting weekly insights driving strategic decisions on resource allocation; building React/Chart.js dashboards accessed by leadership to monitor KPIs and make data-driven program improvements"
+      },
+      1: { // Software Engineering Intern at GetFeedz
+        title: "Software Engineering Intern",
+        company: "GetFeedz Inc.",
+        location: "Jun. 2024 – Aug. 2024 • Remote",
+        description: "• Developed responsive React components with JavaScript that reduced page load time by 35% for 10K+ daily active users through code optimization and lazy loading implementation<br>&nbsp;<br>• Debugged complex state management issues using Chrome DevTools and React Developer Tools, successfully decreasing application crash rate from 12% to 3% over the internship period<br>&nbsp;<br>• Wrote comprehensive unit tests using Jest framework achieving 85% code coverage and collaborated in Agile environment using Jira for sprint planning and GitHub for code reviews"
+      },
+      2: { // Data Analysis Research Assistant at IHU
+        title: "Data Analysis Research Assistant",
+        company: "International Hellenic University",
+        location: "May 2024 – Jul. 2024 • Remote",
+        description: "• Designed efficient algorithms using Python and NumPy processing 1M+ healthcare records in under 30 seconds<br>&nbsp;<br>• Reduced query latency by 10x through PostgreSQL database indexing and query optimization techniques<br>&nbsp;<br>• Built fault-tolerant automation tools using Python scripts achieving 99.5% reliability and saving 20+ hours weekly"
+      },
+      3: { // Executive Director at NutriCycle
+        title: "Executive Director",
+        company: "NutriCycle Environmental Initiative",
+        location: "Nov. 2023 – Jul. 2024 • Stamford, CT",
+        description: "• Founded and led initiative mobilizing 200+ students across multiple organizations to reduce food waste by 30%<br>&nbsp;<br>• Built cloud-based tracking platform using Flask and PostgreSQL, deployed on Render with 99% uptime<br>&nbsp;<br>• Established partnerships with local businesses and educational institutions to create sustainable food waste management programs"
+      }
+    };
+
+    // Card click functionality with modal support
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.card');
+      const modal = document.getElementById('experienceModal');
+      const modalContent = document.getElementById('modalContent');
+      const closeBtn = document.querySelector('.close');
+      
+      cards.forEach((card, index) => {
+        // Add click and touch handlers
+        const handleCardClick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Add visual feedback
+          card.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            card.style.transform = '';
+          }, 150);
+          
+          // Get experience data
+          const experience = experienceData[index];
+          
+          if (experience) {
+            // Create modal content
+            modalContent.innerHTML = `
+              <h2>${experience.title}</h2>
+              <div class="modal-company">${experience.company}</div>
+              <div class="modal-location">${experience.location}</div>
+              <p>${experience.description}</p>
+            `;
+            
+            // Show modal with animation
+            modal.style.display = 'block';
+            setTimeout(() => {
+              modal.classList.add('show');
+            }, 10);
+          }
+        };
+        
+        // Add both click and touch events
+        card.addEventListener('click', handleCardClick);
+        card.addEventListener('touchend', handleCardClick);
+        
+        // Prevent touch conflicts with scrolling
+        card.addEventListener('touchstart', (e) => {
+          e.stopPropagation();
+        }, { passive: false });
+      });
+
+      // Close modal functionality
+      if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => {
+          modal.classList.remove('show');
+          setTimeout(() => {
+            modal.style.display = 'none';
+          }, 400);
+        });
+      }
+
+      // Close modal when clicking outside
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('show');
+          setTimeout(() => {
+            modal.style.display = 'none';
+          }, 400);
+        }
+      });
+
+      // Close modal with escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.style.display === 'block') {
+          modal.classList.remove('show');
+          setTimeout(() => {
+            modal.style.display = 'none';
+          }, 400);
+        }
+      });
     });
 
          // Navigation button click handlers
@@ -2431,88 +2622,7 @@
       }
     });
 
-    // Experience and Projects data for modals (if needed in the future)
-    const experienceData = {};
 
-    // Card click functionality with modal support
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.card');
-      const modal = document.getElementById('experienceModal');
-      const modalContent = document.getElementById('modalContent');
-      const closeBtn = document.querySelector('.close');
-      
-      cards.forEach((card, index) => {
-        // Add click and touch handlers
-        const handleCardClick = (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          // Add visual feedback
-          card.style.transform = 'scale(0.98)';
-          setTimeout(() => {
-            card.style.transform = '';
-          }, 150);
-          
-          // Get experience data
-          const experience = experienceData[index];
-          
-          if (experience) {
-            // Create modal content
-            modalContent.innerHTML = `
-              <h2>${experience.title}</h2>
-              <div class="modal-company">${experience.company}</div>
-              <div class="modal-location">${experience.location}</div>
-              <p>${experience.description}</p>
-            `;
-            
-            // Show modal with animation
-            modal.style.display = 'block';
-            setTimeout(() => {
-              modal.classList.add('show');
-            }, 10);
-          }
-        };
-        
-        // Add both click and touch events
-        card.addEventListener('click', handleCardClick);
-        card.addEventListener('touchend', handleCardClick);
-        
-        // Prevent touch conflicts with scrolling
-        card.addEventListener('touchstart', (e) => {
-          e.stopPropagation();
-        }, { passive: false });
-      });
-
-      // Close modal functionality
-      if (closeBtn && modal) {
-        closeBtn.addEventListener('click', () => {
-          modal.classList.remove('show');
-          setTimeout(() => {
-            modal.style.display = 'none';
-          }, 400);
-        });
-      }
-
-      // Close modal when clicking outside
-      window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('show');
-          setTimeout(() => {
-            modal.style.display = 'none';
-          }, 400);
-        }
-      });
-
-      // Close modal with escape key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal && modal.style.display === 'block') {
-          modal.classList.remove('show');
-          setTimeout(() => {
-            modal.style.display = 'none';
-          }, 400);
-        }
-      });
-    });
   </script>
 
   <!-- Mute icon and vaporwave text -->
@@ -2604,6 +2714,16 @@
       border: 0px solid transparent !important;
     }
   </style>
+
+  <!-- Modal for experience/research details -->
+  <div id="experienceModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modalContent">
+        <!-- Dynamic content will be inserted here -->
+      </div>
+    </div>
+  </div>
 
   <!-- Background music -->
   <audio id="backgroundMusic" loop>
