@@ -1,15 +1,21 @@
-// Simple navigation with dynamic model loading - EXPERIENCE PAGE ONLY
+// Simple navigation with dynamic model loading - ALL PAGES
 document.addEventListener('DOMContentLoaded', () => {
   // Wait for SPA to initialize, then check route
   setTimeout(() => {
     const currentRoute = document.body.getAttribute('data-current-route');
-    if (currentRoute !== 'experience') {
-      console.log('Navigation.js: Skipping model setup - not on experience page, current route:', currentRoute);
-      return;
-    }
+    console.log('Navigation.js: Current route:', currentRoute);
     
+    // Initialize navigation models on all pages, not just experience
     initializeNavigationModels();
   }, 500);
+  
+  // Fallback: also try to initialize after a longer delay in case SPA is slow
+  setTimeout(() => {
+    if (typeof window.initializeNavigationModels === 'function') {
+      console.log('Navigation.js: Fallback initialization');
+      window.initializeNavigationModels();
+    }
+  }, 1500);
 });
 
 // Function to initialize navigation models for experience page
