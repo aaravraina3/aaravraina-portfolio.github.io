@@ -41,6 +41,14 @@
   2. Observe that the menu is hidden.
   3. There is no way to return to the main menu or other sections.
 
+## 8. Cube Animation/Transition Bug
+- **Description:** On the homepage, the cube changes into the experience section and gets stuck. There is a weird animation where it switches to 'status' but then gets jumbled with the 'experience' word.
+- **Location:** Homepage (index.html) and related JS/CSS.
+- **Steps to Reproduce:**
+  1. Visit the homepage.
+  2. Observe the cube animation as you interact or scroll.
+  3. Notice the cube gets stuck and the animation/wording overlaps or jumps unexpectedly.
+
 ---
 
 Add new bugs below as they are discovered.

@@ -1,0 +1,256 @@
+// Music Manager - Centralized music control for the portfolio site
+class MusicManager {
+  constructor() {
+    this.backgroundMusic = null;
+    this.hoverMusic = null;
+    this.muteContainer = null;
+    this.muteIcon = null;
+    this.isPlaying = false;
+    this.isHovering = false;
+    this.userMuted = false; // Track user's explicit mute preference
+    this.currentFadeInterval = null;
+    
+    this.init();
+  }
+
+  init() {
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.setupMusic());
+    } else {
+      this.setupMusic();
+    }
+  }
+
+  setupMusic() {
+    this.backgroundMusic = document.getElementById('backgroundMusic');
+    this.hoverMusic = document.getElementById('hoverMusic');
+    this.muteContainer = document.getElementById('muteContainer');
+    this.muteIcon = document.getElementById('muteIcon');
+
+    if (!this.backgroundMusic || !this.muteContainer) {
+      console.log('Music elements not found');
+      return;
+    }
+
+    // Set initial volumes
+    this.backgroundMusic.volume = 0.2;
+    if (this.hoverMusic) {
+      this.hoverMusic.volume = 0;
+      this.hoverMusic.currentTime = 25; // Start at 25 seconds
+    }
+
+    // Setup event listeners
+    this.setupEventListeners();
+    
+    // Try to auto-start only if user hasn't explicitly muted
+    if (!this.userMuted) {
+      this.attemptAutoStart();
+    }
+  }
+
+  setupEventListeners() {
+    // Music toggle
+    this.muteContainer.addEventListener('click', () => this.toggleMusic());
+
+    // Page visibility change - respect user's mute preference
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        // Page hidden - pause music but remember state
+        if (this.isPlaying && !this.userMuted) {
+          this.pauseMusic();
+        }
+      } else {
+        // Page visible - only resume if user hadn't muted
+        if (!this.userMuted && this.backgroundMusic.volume > 0) {
+          this.resumeMusic();
+        }
+      }
+    });
+
+    // Window focus - only resume if user hadn't muted
+    window.addEventListener('focus', () => {
+      if (!this.userMuted && this.backgroundMusic.volume > 0) {
+        this.resumeMusic();
+      }
+    });
+
+    // Navigation hover effects (only on home page)
+    this.setupHoverEffects();
+  }
+
+  setupHoverEffects() {
+    const navContainer = document.querySelector('.bottom-nav');
+    if (navContainer && this.hoverMusic) {
+      navContainer.addEventListener('mouseenter', () => this.fadeToHover());
+      navContainer.addEventListener('mouseleave', () => this.fadeToBackground());
+    }
+  }
+
+  toggleMusic() {
+    if (this.isPlaying) {
+      this.muteMusic();
+    } else {
+      this.unmuteMusic();
+    }
+  }
+
+  muteMusic() {
+    this.userMuted = true;
+    this.isPlaying = false;
+    this.pauseMusic();
+    this.updateMuteIcon(false);
+    
+    // Store preference in localStorage
+    localStorage.setItem('musicMuted', 'true');
+  }
+
+  unmuteMusic() {
+    this.userMuted = false;
+    this.isPlaying = true;
+    this.resumeMusic();
+    this.updateMuteIcon(true);
+    
+    // Store preference in localStorage
+    localStorage.setItem('musicMuted', 'false');
+  }
+
+  pauseMusic() {
+    if (this.backgroundMusic) {
+      this.backgroundMusic.pause();
+    }
+    if (this.hoverMusic) {
+      this.hoverMusic.pause();
+    }
+  }
+
+  resumeMusic() {
+    if (this.userMuted) return; // Don't resume if user muted
+    
+    if (this.backgroundMusic && this.backgroundMusic.volume > 0) {
+      this.backgroundMusic.play().catch(e => console.log('Background music resume failed:', e));
+    }
+    if (this.hoverMusic && this.hoverMusic.volume > 0) {
+      this.hoverMusic.play().catch(e => console.log('Hover music resume failed:', e));
+    }
+  }
+
+  updateMuteIcon(isPlaying) {
+    if (!this.muteIcon) return;
+    
+    const mutedIcon = `<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>`;
+    const playingIcon = `<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>`;
+    
+    this.muteIcon.innerHTML = isPlaying ? playingIcon : mutedIcon;
+  }
+
+  fadeToHover() {
+    if (!this.isPlaying || this.isHovering || !this.hoverMusic) return;
+    
+    // Clear any existing fade interval
+    if (this.currentFadeInterval) {
+      clearInterval(this.currentFadeInterval);
+      this.currentFadeInterval = null;
+    }
+    
+    this.isHovering = true;
+    
+    // Start hover music if not already playing
+    if (this.hoverMusic.paused) {
+      this.hoverMusic.play().catch(e => console.log('Hover music play failed:', e));
+    }
+    
+    // Fade out background, fade in hover
+    this.currentFadeInterval = setInterval(() => {
+      if (this.backgroundMusic.volume > 0) {
+        this.backgroundMusic.volume = Math.max(0, this.backgroundMusic.volume - 0.05);
+      }
+      if (this.hoverMusic.volume < 0.5) {
+        this.hoverMusic.volume = Math.min(0.5, this.hoverMusic.volume + 0.05);
+      }
+      
+      if (this.backgroundMusic.volume <= 0 && this.hoverMusic.volume >= 0.5) {
+        clearInterval(this.currentFadeInterval);
+        this.currentFadeInterval = null;
+      }
+    }, 50);
+  }
+
+  fadeToBackground() {
+    if (!this.isPlaying || !this.isHovering) return;
+    
+    // Clear any existing fade interval
+    if (this.currentFadeInterval) {
+      clearInterval(this.currentFadeInterval);
+      this.currentFadeInterval = null;
+    }
+    
+    this.isHovering = false;
+    
+    // Fade out hover, fade in background
+    this.currentFadeInterval = setInterval(() => {
+      if (this.hoverMusic.volume > 0) {
+        this.hoverMusic.volume = Math.max(0, this.hoverMusic.volume - 0.05);
+      }
+      if (this.backgroundMusic.volume < 0.2) {
+        this.backgroundMusic.volume = Math.min(0.2, this.backgroundMusic.volume + 0.05);
+      }
+      
+      if (this.hoverMusic.volume <= 0 && this.backgroundMusic.volume >= 0.2) {
+        clearInterval(this.currentFadeInterval);
+        this.currentFadeInterval = null;
+        this.hoverMusic.pause();
+      }
+    }, 50);
+  }
+
+  attemptAutoStart() {
+    if (this.userMuted) return; // Don't auto-start if user muted
+    
+    // Check localStorage for saved preference
+    const savedMuteState = localStorage.getItem('musicMuted');
+    if (savedMuteState === 'true') {
+      this.userMuted = true;
+      return;
+    }
+    
+    if (!this.isPlaying && this.backgroundMusic) {
+      this.backgroundMusic.play().then(() => {
+        this.isPlaying = true;
+        this.updateMuteIcon(true);
+        console.log('Music auto-started successfully');
+      }).catch(e => {
+        console.log('Auto-start failed, waiting for user interaction:', e);
+        // Try again after any user interaction
+        document.addEventListener('click', () => {
+          if (!this.isPlaying && !this.userMuted) {
+            this.toggleMusic();
+          }
+        }, { once: true });
+      });
+    }
+  }
+
+  // Public methods for external control
+  setVolume(volume) {
+    if (this.backgroundMusic) {
+      this.backgroundMusic.volume = Math.max(0, Math.min(1, volume));
+    }
+  }
+
+  getVolume() {
+    return this.backgroundMusic ? this.backgroundMusic.volume : 0;
+  }
+
+  isMuted() {
+    return this.userMuted;
+  }
+}
+
+// Initialize music manager when script loads
+const musicManager = new MusicManager();
+
+// Export for use in other modules
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = MusicManager;
+}

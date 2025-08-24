@@ -1802,12 +1802,7 @@
       setTimeout(attemptAutoStart, 1000);
       setTimeout(attemptAutoStart, 2000);
 
-      // Also try on window focus
-      window.addEventListener('focus', () => {
-        if (!isPlaying) {
-          setTimeout(attemptAutoStart, 100);
-        }
-      });
+      // Window focus handling is now managed by musicManager.js
 
       // Try on any user interaction
       ['click', 'keydown', 'touchstart', 'mousemove'].forEach(event => {
