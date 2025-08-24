@@ -635,32 +635,8 @@
     }
 
 
-    .nav-link::before {
-      content: '';
-      position: absolute;
-      left: -2.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background-image: url('Images/Hand.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .nav-link:nth-child(3)::before {
-      background-image: url('Images/Dophin.png');
-    }
-
     .nav-link:hover {
       color: #00ffff;
-    }
-
-    .nav-link:hover::before {
-      opacity: 1;
     }
 
     /* Mute icon and vaporwave text */
@@ -695,26 +671,7 @@
       position: relative;
     }
 
-    .mute-text::before {
-      content: '';
-      position: absolute;
-      right: calc(100% + 2rem);
-      top: 50%;
-      transform: translateY(-50%);
-      width: 30px;
-      height: 30px;
-      background-image: url('Images/Hand.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 10;
-    }
 
-    .mute-text:hover::before {
-      opacity: 1;
-    }
 
     .mute-container:hover .mute-icon {
       fill: #ff00ff;
