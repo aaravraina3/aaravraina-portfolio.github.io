@@ -1547,7 +1547,7 @@ body[data-current-route="home"] .mobile-menu-btn {
 
 /* Experience and Research Spotlight System */
 .experience-card, .research-card {
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
 }
@@ -1583,7 +1583,7 @@ body[data-current-route="home"] .mobile-menu-btn {
   opacity: 0.6;
   transform: scale(0.95);
   filter: grayscale(20%);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 /* When hovering over research cards, dim others */
@@ -1591,7 +1591,7 @@ body[data-current-route="home"] .mobile-menu-btn {
   opacity: 0.6;
   transform: scale(0.95);
   filter: grayscale(20%);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 /* Smooth transitions for all cards */
