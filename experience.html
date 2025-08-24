@@ -2310,10 +2310,11 @@
             card.style.transform = '';
           }, 150);
           
-          // Get experience data
-          const experience = experienceData[index];
+          // Get experience data using data-card attribute
+          const cardIndex = card.getAttribute('data-card');
+          const experience = experienceData[cardIndex];
           
-          console.log('Experience data:', experience); // Debug log
+          console.log('Card index:', cardIndex, 'Experience data:', experience); // Debug log
           
           if (experience) {
             // Create modal content

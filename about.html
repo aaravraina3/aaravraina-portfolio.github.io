@@ -676,7 +676,7 @@
           
           <div class="profile-image" style="text-align: center; margin: 3rem 0; display: flex; justify-content: center; align-items: center;">
             <div id="profilePhotoContainer" style="display: inline-block; cursor: pointer; transition: all 0.3s ease; text-align: center; margin-left: 2rem;">
-              <img id="profilePhoto" src="Images/Solo.png" alt="Aarav Raina" style="width: 300px; height: 300px; object-fit: contain; border-radius: 1.5rem; box-shadow: 0 8px 32px rgba(255, 0, 255, 0.4); border: 4px solid #ff00ff !important; transition: all 0.3s ease; display: block; margin: 0 auto;" />
+              <img id="profilePhoto" src="Images/Solo.png" alt="Aarav Raina" style="width: 300px; height: 300px; object-fit: cover; border-radius: 1.5rem; box-shadow: 0 8px 32px rgba(255, 0, 255, 0.4); border: 4px solid #ff00ff !important; transition: all 0.3s ease; display: block; margin: 0 auto;" />
             </div>
           </div>
           
@@ -735,7 +735,7 @@
                 <span class="icon-tooltip">HTML/CSS</span>
               </div>
               <div class="icon-container">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/latex/latex-original.svg" alt="LaTeX" style="filter: hue-rotate(120deg) brightness(1.2);">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/latex/latex-original.svg" alt="LaTeX" style="filter: brightness(0) invert(1);">
                 <span class="icon-tooltip">LaTeX</span>
               </div>
             </div>
@@ -756,7 +756,7 @@
                 <span class="icon-tooltip">pandas</span>
               </div>
               <div class="icon-container">
-                <img src="Images/Icons/Sckit.png" alt="scikit-learn">
+                <img src="Images/Icons/Sckit.png" alt="scikit-learn" style="filter: brightness(0) invert(1);">
                 <span class="icon-tooltip">scikit-learn</span>
               </div>
               <div class="icon-container">
@@ -772,7 +772,7 @@
                 <span class="icon-tooltip">TensorFlow</span>
               </div>
               <div class="icon-container">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" style="filter: brightness(0) invert(1);">
                 <span class="icon-tooltip">Flask</span>
               </div>
               <div class="icon-container">
@@ -784,7 +784,7 @@
                 <span class="icon-tooltip">Spring Boot</span>
               </div>
               <div class="icon-container">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg" alt="WebSockets">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg" alt="WebSockets" style="filter: brightness(0) invert(1);">
                 <span class="icon-tooltip">WebSockets</span>
               </div>
             </div>
@@ -840,6 +840,11 @@
 
     </div>
   </div>
+
+  <!-- Custom Purple Cursor -->
+  <svg id="custom-cursor" width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: fixed; pointer-events: none; z-index: 10000; transition: transform 0.1s ease;">
+    <path d="M20.0995 11.0797L3.72518 1.13204C2.28687 0.258253 0.478228 1.44326 0.704999 3.11083L3.28667 22.0953C3.58333 24.2768 7.33319 24.6415 8.3792 22.7043C9.5038 20.6215 10.8639 18.7382 12.43 17.7122C13.996 16.6861 16.2658 16.1911 18.6244 15.9918C20.8181 15.8063 21.9811 12.2227 20.0995 11.0797Z" fill="#ff00ff" stroke="rgba(255,0,255,0.5)" stroke-width="1"/>
+  </svg>
 
   <!-- Mute icon and vaporwave text -->
   <div class="mute-container" style="position: fixed; bottom: 1.5rem; left: 1.5rem; z-index: 10; display: flex; align-items: center; gap: 0.5rem; cursor: pointer; opacity: 1; transition: opacity 0.3s ease;">
@@ -967,26 +972,35 @@
         }
       );
       
-      // Animate info sections on scroll
-      gsap.utils.toArray('.info-section').forEach((section, i) => {
-        gsap.fromTo(section, 
-          {
-            opacity: 0,
-            y: 50
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              end: "bottom 20%",
-              toggleActions: "play none none reverse"
-            }
+          // Animate info sections on scroll
+    gsap.utils.toArray('.info-section').forEach((section, i) => {
+      gsap.fromTo(section, 
+        {
+          opacity: 0,
+          y: 50
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
           }
-        );
+        }
+      );
+    });
+
+    // Custom purple cursor
+    const customCursor = document.getElementById('custom-cursor');
+    if (customCursor) {
+      document.addEventListener('mousemove', (e) => {
+        customCursor.style.left = e.clientX + 'px';
+        customCursor.style.top = e.clientY + 'px';
       });
+    }
       
       // Animate stack icons
       gsap.utils.toArray('.icon-container').forEach((icon, i) => {
