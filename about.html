@@ -674,8 +674,10 @@
         <div class="profile-text">
                     <h2>👋 Hi there. I'm <span style="color: #ff00ff;"><strong>Aarav Raina</strong></span> and welcome to my personal portfolio! I'm pursuing a Bachelor's in <em>Computer Science</em> and <em>Finance</em> at <span style="background: #ffffff; color: #990000; padding: 0 0.5rem; border-radius: 8px; border: 1px solid #990000; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;"><img src="Images/NEU.png" alt="Northeastern University" style="width: 1em; height: 1em; object-fit: contain;">Northeastern University</span>. I specialize in building <a href="#" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">full-stack systems</a>, large language models, and the occasional <a href="#" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">passion project</a> that keeps me up at night.</h2>
           
-          <div class="profile-image">
-            <img src="Images/Solo.png" alt="Aarav Raina Solo" style="width: 160px; height: 160px; object-fit: cover; border-radius: 1.2rem; box-shadow: 0 4px 18px #ff00ff33; border: 2px solid #ff00ff;" />
+          <div class="profile-image" style="text-align: center; margin: 2rem 0;">
+            <div id="profilePhotoContainer" style="display: inline-block; cursor: pointer; transition: all 0.3s ease;">
+              <img id="profilePhoto" src="Images/Solo.png" alt="Aarav Raina" style="width: 200px; height: 200px; object-fit: cover; border-radius: 1.2rem; box-shadow: 0 4px 18px #ff00ff33; border: 2px solid #ff00ff; transition: all 0.3s ease;" />
+            </div>
           </div>
           
                      <p>Tech has been part of my life for as long as I can remember. As a toddler, I was dismantling remotes and rewiring toys. By middle school, I was building computers and teaching myself to code. <span style="background: rgba(255, 0, 255, 0.3); color: #ffffff;">At 18, online poker led me to discover a vulnerability in a crypto casino's shuffling algorithm</span> that created predictable patterns every few hundred hands. I taught myself to code and developed a program to exploit it (<em style="color: #00ffff;">ethically, of course</em>), and was hired to help fix their system. Since then, I've been obsessed with finding ways to apply algorithmic reasoning—through machine learning, game theory, and probabilistic thinking—to real-world conflict and decision-making.</p>
@@ -1179,6 +1181,90 @@
   </style>
 
   <!-- Music functionality is now handled by musicManager.js -->
+
+  <script>
+    // Profile Photo Image Switcher for About Page
+    document.addEventListener('DOMContentLoaded', () => {
+      const profilePhoto = document.getElementById('profilePhoto');
+      const profilePhotoContainer = document.getElementById('profilePhotoContainer');
+      
+      if (!profilePhoto || !profilePhotoContainer) return;
+      
+      // Image sources
+      const images = [
+        'Images/Solo.png',
+        'Images/Group.jpg',
+        'Images/Friends.jpg' // OK gesture photo
+      ];
+      
+      let currentImageIndex = 0;
+      let isAutoSwitching = true;
+      let autoSwitchInterval;
+      
+      // Function to switch to next image
+      function switchToNextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        profilePhoto.src = images[currentImageIndex];
+        
+        // Add a subtle transition effect
+        profilePhoto.style.opacity = '0.8';
+        setTimeout(() => {
+          profilePhoto.style.opacity = '1';
+        }, 150);
+      }
+      
+      // Function to switch to specific image (OK gesture)
+      function switchToOKImage() {
+        currentImageIndex = 2; // Index 2 is the Friends.jpg (OK gesture)
+        profilePhoto.src = images[currentImageIndex];
+        profilePhoto.style.opacity = '0.8';
+        setTimeout(() => {
+          profilePhoto.style.opacity = '1';
+        }, 150);
+        
+        // Pause auto-switching temporarily
+        isAutoSwitching = false;
+        clearInterval(autoSwitchInterval);
+        
+        // Resume auto-switching after 5 seconds
+        setTimeout(() => {
+          isAutoSwitching = true;
+          startAutoSwitching();
+        }, 5000);
+      }
+      
+      // Start auto-switching
+      function startAutoSwitching() {
+        if (autoSwitchInterval) clearInterval(autoSwitchInterval);
+        
+        autoSwitchInterval = setInterval(() => {
+          if (isAutoSwitching) {
+            switchToNextImage();
+          }
+        }, 5000); // Switch every 5 seconds
+      }
+      
+      // Click handler to switch to OK gesture
+      profilePhotoContainer.addEventListener('click', switchToOKImage);
+      
+      // Start auto-switching
+      startAutoSwitching();
+      
+      // Add hover effect to indicate it's clickable
+      profilePhotoContainer.style.cursor = 'pointer';
+      profilePhotoContainer.title = 'Click to see OK gesture!';
+      
+      // Add subtle hover animation
+      profilePhotoContainer.addEventListener('mouseenter', () => {
+        profilePhotoContainer.style.transform = 'scale(1.05)';
+        profilePhotoContainer.style.transition = 'transform 0.3s ease';
+      });
+      
+      profilePhotoContainer.addEventListener('mouseleave', () => {
+        profilePhotoContainer.style.transform = 'scale(1)';
+      });
+    });
+  </script>
 
 </body>
 </html>
