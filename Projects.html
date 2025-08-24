@@ -717,23 +717,23 @@
       <div class="projects-wheel">
         <div class="wheel-container">
           <div class="project-card" data-project="jarvis">
-            <div class="project-image" style="background-image: url('Images/ProjectPhotos/ThreeVariable.png');"></div>
+            <div class="project-image" style="background-image: url('Images/Jarvis.png');"></div>
             <div class="project-header">
               <h3>Jarvis - AI Personal Assistant</h3>
             </div>
           </div>
           
-          <div class="project-card" data-project="flywheel">
-            <div class="project-image" style="background-image: url('Images/ProjectPhotos/MagneticallyLevitating.png');"></div>
+          <div class="project-card" data-project="nutricycle">
+            <div class="project-image" style="background-image: url('Images/NutriCycle.png');"></div>
             <div class="project-header">
-              <h3>Magnetically Levitating Flywheel Generator</h3>
+              <h3>NutriCycle Environmental Initiative</h3>
             </div>
           </div>
           
-          <div class="project-card" data-project="foosball">
-            <div class="project-image" style="background-image: url('Images/ProjectPhotos/SmartTable.png');"></div>
+          <div class="project-card" data-project="chatbot">
+            <div class="project-image" style="background-image: url('Images/chatbot.avif');"></div>
             <div class="project-header">
-              <h3>SmartTable System for Competitive Foosball</h3>
+              <h3>NLP AI Chatbot</h3>
             </div>
           </div>
           
@@ -745,14 +745,14 @@
           </div>
           
           <div class="project-card" data-project="poker">
-            <div class="project-image" style="background-image: url('Images/ProjectPhotos/ThreeVariable.png');"></div>
+            <div class="project-image" style="background-image: url('Images/poker.avif');"></div>
             <div class="project-header">
               <h3>Bayesian Poker Analysis Engine</h3>
             </div>
           </div>
           
           <div class="project-card" data-project="stockmarket">
-            <div class="project-image" style="background-image: url('Images/ProjectPhotos/MagneticallyLevitating.png');"></div>
+            <div class="project-image" style="background-image: url('Images/stock.webp');"></div>
             <div class="project-header">
               <h3>Stock Market Analysis Tool</h3>
             </div>
@@ -882,36 +882,41 @@
           title: "Jarvis - AI Personal Assistant",
           description: "Building microservices architecture with FastAPI and implementing real-time notifications using WebSockets. Integrating LLMs for natural language processing and containerizing with Docker for efficient deployment. Implementing error handling, logging, and monitoring to ensure system reliability and debugging capabilities.",
           tech: ["Python", "FastAPI", "React", "PostgreSQL", "Redis", "Docker", "LLMs", "WebSockets"],
-          image: "Images/ProjectPhotos/ThreeVariable.png"
+          image: "Images/Jarvis.png",
+          github: "https://github.com/aaravraina3/Jarvis"
         },
-        flywheel: {
-          title: "Magnetically Levitating Flywheel Generator",
-          description: "Developed an innovative energy storage system using magnetic levitation technology to reduce friction losses in flywheel energy storage. The project integrated electromagnetic controls, power electronics, and real-time monitoring systems to achieve stable levitation and energy conversion.",
-          tech: ["Electromagnetic Design", "Power Electronics", "Control Systems", "MATLAB/Simulink", "PCB Design", "Embedded Systems"],
-          image: "Images/ProjectPhotos/MagneticallyLevitating.png"
+        nutricycle: {
+          title: "NutriCycle Environmental Initiative",
+          description: "Founded and led environmental initiative mobilizing 200+ students across multiple organizations to reduce food waste by 30%. Built cloud-based tracking platform using Flask and PostgreSQL, deployed on Render with 99% uptime. Established partnerships with local businesses and educational institutions to create sustainable food waste management programs.",
+          tech: ["Python", "Flask", "PostgreSQL", "Cloud Deployment", "Leadership", "Environmental Science", "Partnership Development"],
+          image: "Images/NutriCycle.png",
+          github: "https://github.com/aaravraina3/NutriCycle"
         },
-        foosball: {
-          title: "SmartTable System for Competitive Foosball",
-          description: "Created an intelligent foosball table system with real-time score tracking, game analytics, and competitive features. The system uses computer vision for ball tracking, embedded sensors for goal detection, and a web interface for tournament management and player statistics.",
-          tech: ["Computer Vision", "OpenCV", "Raspberry Pi", "Node.js", "React", "WebSocket", "3D Printing"],
-          image: "Images/ProjectPhotos/SmartTable.png"
+        chatbot: {
+          title: "NLP AI Chatbot",
+          description: "Developed an intelligent chatbot that serves as a knowledge base, answering questions about club history, practices, events, and member information. Integrated with Notion API for real-time data access and Slack API for seamless communication within the organization. The chatbot provides instant responses to common queries and directs members to the right contacts for specific needs.",
+          tech: ["Python", "OpenAI API", "Notion API", "Slack API", "Natural Language Processing", "Webhooks", "JSON", "REST APIs"],
+          image: "Images/chatbot.avif"
         },
         website: {
           title: "Portfolio Website with Interactive Design",
           description: "Designed and developed this interactive portfolio website featuring custom 3D animations, responsive design, and dynamic content. The site showcases modern web technologies while maintaining optimal performance and accessibility across all devices.",
-          tech: ["HTML5", "CSS3", "JavaScript", "GSAP", "Three.js", "Responsive Design", "Web Performance"]
+          tech: ["HTML5", "CSS3", "JavaScript", "GSAP", "Three.js", "Responsive Design", "Web Performance"],
+          image: "Assets/Portfolio.gif",
+          github: "https://github.com/aaravraina3/aaravraina3.github.io"
         },
         poker: {
           title: "Bayesian Poker Analysis Engine",
           description: "Implemented a sophisticated Bayesian inference system for analyzing poker gameplay and opponent behavior patterns. The engine uses probabilistic models to estimate bluffing tendencies, betting patterns, and optimal decision-making strategies across multi-street poker scenarios.",
           tech: ["Python", "Bayesian Inference", "Statistical Modeling", "Game Theory", "Data Analysis", "Machine Learning"],
-          image: "Images/ProjectPhotos/ThreeVariable.png"
+          image: "Images/poker.avif"
         },
         stockmarket: {
           title: "Stock Market Analysis Tool",
           description: "Built full-stack application with ML models for stock prediction; implemented Redis caching reducing API calls by 70%. Optimized data processing achieving 5x performance improvement for historical market data analysis.",
           tech: ["Python", "Flask", "React", "pandas", "scikit-learn", "yfinance API", "Redis", "Machine Learning"],
-          image: "Images/ProjectPhotos/MagneticallyLevitating.png"
+          image: "Images/stock.webp",
+          github: "https://github.com/aaravraina3/Stock-Market-Analysis-Tool"
         }
       };
 
@@ -931,13 +936,32 @@
           
           if (project) {
             // Create modal content
+            let imageHtml = '';
+            if (project.image) {
+              if (projectId === 'website') {
+                // For Portfolio Website (GIF), use cover instead of contain
+                imageHtml = `<img src="${project.image}" alt="${project.title}" style="width: 100%; height: 450px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">`;
+              } else {
+                // For other projects, use contain
+                imageHtml = `<img src="${project.image}" alt="${project.title}" style="width: 100%; height: 450px; object-fit: contain; border-radius: 8px; margin-bottom: 1rem;">`;
+              }
+            }
+            
             modalContent.innerHTML = `
               <h2>${project.title}</h2>
-              ${project.image ? `<img src="${project.image}" alt="${project.title}" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">` : ''}
+              ${imageHtml}
               <p>${project.description}</p>
               <div class="modal-tech">
                 ${project.tech.map(tech => `<span class="modal-tech-pill">${tech}</span>`).join('')}
               </div>
+              ${project.github ? `<div class="modal-github" style="margin-top: 1rem; text-align: center;">
+                <a href="${project.github}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: #24292e; color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: all 0.3s ease;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink: 0;">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  View on GitHub
+                </a>
+              </div>` : ''}
             `;
             
             // Apply fullscreen class for portfolio website project

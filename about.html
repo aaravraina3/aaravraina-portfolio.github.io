@@ -49,8 +49,9 @@
       background-size: 400% 400%;
       animation: gradientShift 8s ease infinite;
       position: relative;
-      padding: 2rem;
+      padding: 2rem 4rem 2rem 8rem; /* Increased left padding to move content more to the right */
       box-sizing: border-box;
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     /* Add dot pattern overlay similar to reference image */
@@ -65,6 +66,30 @@
       background-size: 20px 20px;
       opacity: 0.3;
       pointer-events: none;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 1200px) {
+      .about-container {
+        padding: 2rem 3rem 2rem 6rem; /* Maintain more right positioning on medium screens */
+      }
+      .about-content {
+        max-width: 100%;
+        padding-left: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-container {
+        padding: 2rem;
+      }
+      .about-content {
+        padding-left: 0;
+      }
+      #profilePhoto {
+        width: 280px !important;
+        height: 280px !important;
+      }
     }
 
     @keyframes gradientShift {
@@ -135,11 +160,12 @@
 
     /* Content area */
     .about-content {
-      max-width: 1200px;
+      max-width: 1400px; /* Increased max-width to prevent cutoff */
       margin: 0 auto;
       padding-top: 3rem;
       z-index: 10;
       position: relative;
+      padding-left: 2rem; /* Add left padding to move content right */
     }
 
     /* Profile section */
@@ -152,14 +178,17 @@
     }
 
     .profile-image {
-      float: right;
-      width: 400px;
-      max-width: 400px;
-      aspect-ratio: 1;
+      float: none; /* Remove float to prevent layout issues */
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: auto;
       border-radius: 20px;
-      overflow: hidden;
+      overflow: visible; /* Changed from hidden to visible to prevent cutoff */
       transition: all 0.3s ease;
-      margin: 2rem 0 2rem 2rem;
+      margin: 2rem 0;
+      text-align: center; /* Center the image */
+      display: flex;
+      justify-content: center; /* Center the image */
     }
 
     .profile-image:hover {
@@ -628,18 +657,7 @@
       opacity: 0.9;
     }
 
-    /* Image positioning adjustments */
-    .profile-image {
-      float: right;
-      width: 40vw;
-      max-width: 350px;
-      aspect-ratio: 1;
-      border-radius: 20px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      margin: 2rem 1rem 2rem 3rem;
-      shape-outside: circle(50%);
-    }
+    /* Image positioning adjustments - REMOVED DUPLICATE RULE */
   </style>
 </head>
 <body>
@@ -679,12 +697,12 @@
                     <h2>👋 Hi there. I'm <span style="color: #ff00ff;"><strong>Aarav Raina</strong></span> and welcome to my personal portfolio! I'm pursuing a Bachelor's in <em>Computer Science</em> and <em>Finance</em> at <span style="background: #ffffff; color: #990000; padding: 0 0.5rem; border-radius: 8px; border: 1px solid #990000; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;"><img src="Images/NEU.png" alt="Northeastern University" style="width: 1em; height: 1em; object-fit: contain;">Northeastern University</span>. I specialize in building <a href="#" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">full-stack systems</a>, large language models, and the occasional <a href="#" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">passion project</a> that keeps me up at night.</h2>
           
           <div class="profile-image" style="text-align: center; margin: 3rem 0; display: flex; justify-content: center; align-items: center;">
-            <div id="profilePhotoContainer" style="display: inline-block; cursor: pointer; transition: all 0.3s ease; text-align: center;">
-              <img id="profilePhoto" src="Images/Solo.png" alt="Aarav Raina" style="width: 400px; height: 400px; object-fit: cover; border-radius: 1.5rem; box-shadow: 0 8px 32px rgba(255, 0, 255, 0.4); border: 4px solid #ff00ff !important; transition: all 0.3s ease; display: block; margin: 0 auto;" />
+            <div id="profilePhotoContainer" style="display: inline-block; cursor: pointer; transition: all 0.3s ease; text-align: center; width: 800px; overflow: visible;">
+              <img id="profilePhoto" src="Images/Solo.png" alt="Aarav Raina" style="width: 800px; height: 380px; object-fit: contain; border-radius: 1.5rem; transition: all 0.3s ease; display: block; margin: 0 auto;" />
             </div>
           </div>
           
-                     <p>Tech has been part of my life for as long as I can remember. As a toddler, I was dismantling remotes and rewiring toys. By middle school, I was building computers and teaching myself to code. <span style="background: rgba(255, 0, 255, 0.3); color: #ffffff;">At 17, online chess led me to discover a vulnerability in an online chess platform that used a weak random seed that reset daily. Built a program that could predict opponent moves in their "random" practice matches. Posted about it on the chess forums and the platform devs reached out (paid me to help patch it, <em style="color: #00ffff;">ethically, of course</em>), and was hired to help fix their system.</span> Since then, I've been obsessed with finding these hidden patterns everywhere - using code to decode systems that everyone else assumes are random. Since then, I've been obsessed with finding ways to apply algorithmic reasoning—through machine learning, game theory, and probabilistic thinking—to real-world conflict and decision-making.</p>
+                     <p>Tech has been part of my life for as long as I can remember. As a toddler, I was dismantling remotes and rewiring toys. By middle school, I was building computers and teaching myself to code. <span style="background: rgba(255, 0, 255, 0.3); color: #ffffff;">At 17, online chess led me to discover a vulnerability in an online chess platform that used a weak random seed</span> that reset daily. I taught myself to code and developed a program to exploit it (<em style="color: #00ffff;">ethically, of course</em>), and was hired to help fix their system. Since then, I've been obsessed with finding these hidden patterns everywhere - using code to decode systems that everyone else assumes are random. Since then, I've been obsessed with finding ways to apply algorithmic reasoning—through machine learning, game theory, and probabilistic thinking—to real-world conflict and decision-making.</p>
 
                     <p>I'm excited by projects that are <strong style="color: #ff00ff;">ambitious</strong>, <em style="color: #00ffff;">creative</em>, and <mark style="background: rgba(0, 255, 255, 0.15); color: #00ffff; padding: 0.2rem 0.4rem; border-radius: 4px;">technically challenging</mark>. I enjoy turning complex ideas into intuitive and functional digital experiences, whether it's a rough concept or a fully formed vision. When I'm not studying or coding, you'll find me at the gym finishing training with my <a href="https://www.instagram.com/northeasternbjj/" target="_blank" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">BJJ team</a> and pushing my limits with <a href="https://hevy.com/user/araina3" target="_blank" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">lifting and running</a>. I also like to play poker (my main source of income), and eat ramen (my main source of expenses).</p>
         </div>
@@ -825,15 +843,15 @@
                 <span class="icon-tooltip">Git</span>
               </div>
               <div class="icon-container">
-                <img src="chatgpt.svg" alt="ChatGPT" style="width: 45px; height: 45px;">
+                <img src="Images/Icons/chatgpt.svg" alt="ChatGPT" style="width: 45px; height: 45px;">
                 <span class="icon-tooltip">ChatGPT</span>
               </div>
               <div class="icon-container">
-                <img src="claude-color.svg" alt="Claude" style="width: 45px; height: 45px;">
+                <img src="Images/Icons/claude-color.svg" alt="Claude" style="width: 45px; height: 45px;">
                 <span class="icon-tooltip">Claude</span>
               </div>
               <div class="icon-container">
-                <img src="cursor.svg" alt="Cursor" style="width: 45px; height: 45px;">
+                <img src="Images/Icons/cursor.svg" alt="Cursor" style="width: 45px; height: 45px;">
                 <span class="icon-tooltip">Cursor</span>
               </div>
             </div>
@@ -1109,6 +1127,38 @@
             }, 800);
           }
         });
+      });
+    });
+
+    // Stack Section Toggle Functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const stackSections = document.querySelectorAll('.stack-section');
+      
+      stackSections.forEach(section => {
+        const header = section.querySelector('.stack-header');
+        const content = section.querySelector('.stack-content');
+        const arrow = section.querySelector('.stack-arrow');
+        
+        if (header && content && arrow) {
+          header.addEventListener('click', () => {
+            // Toggle active state
+            section.classList.toggle('active');
+            
+            // Update arrow
+            if (section.classList.contains('active')) {
+              arrow.textContent = '▲';
+              content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+              arrow.textContent = '▼';
+              content.style.maxHeight = '0';
+            }
+          });
+          
+          // Initialize closed state
+          content.style.maxHeight = '0';
+          content.style.overflow = 'hidden';
+          content.style.transition = 'max-height 0.2s ease';
+        }
       });
     });
 
