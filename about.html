@@ -676,7 +676,7 @@
           
           <div class="profile-image" style="text-align: center; margin: 3rem 0; display: flex; justify-content: center; align-items: center;">
             <div id="profilePhotoContainer" style="display: inline-block; cursor: pointer; transition: all 0.3s ease; text-align: center; margin-left: 2rem;">
-              <img id="profilePhoto" src="Images/Solo.png" alt="Aarav Raina" style="width: 400px; height: 300px; object-fit: contain; border-radius: 1.5rem; box-shadow: 0 8px 32px rgba(255, 0, 255, 0.4); border: 4px solid #ff00ff !important; transition: all 0.3s ease; display: block; margin: 0 auto;" />
+              <img id="profilePhoto" src="Images/Solo.png" alt="Aarav Raina" style="width: 300px; height: 300px; object-fit: cover; border-radius: 1.5rem; box-shadow: 0 8px 32px rgba(255, 0, 255, 0.4); border: 4px solid #ff00ff !important; transition: all 0.3s ease; display: block; margin: 0 auto;" />
             </div>
           </div>
           
@@ -1086,8 +1086,8 @@
       // Fix loading delay by ensuring proper initialization
       function initializeStacks() {
         document.querySelectorAll('.stack-section').forEach(section => {
-          // Ensure they're properly initialized but closed
-          section.classList.remove('active');
+          // Ensure they're properly initialized and open by default
+          section.classList.add('active');
           // Force a reflow to ensure proper rendering
           section.offsetHeight;
         });
