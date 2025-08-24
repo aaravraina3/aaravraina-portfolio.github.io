@@ -11,6 +11,10 @@ body {
   -webkit-overscroll-behavior: none;
   opacity: 0;
   animation: easeIn 0.8s ease-out forwards;
+  background: linear-gradient(135deg, #1a0e2e 0%, #2d1b4e 25%, #1a0e2e 50%, #2d1b4e 75%, #1a0e2e 100%);
+  background-size: 400% 400%;
+  animation: easeIn 0.8s ease-out forwards, gradientShift 20s ease infinite;
+  min-height: 100vh;
 }
 
 
