@@ -2318,16 +2318,20 @@
 
     // Card click functionality with modal support
     document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.card');
+      const cards = document.querySelectorAll('.card, .experience-card, .research-card');
       const modal = document.getElementById('experienceModal');
       const modalContent = document.getElementById('modalContent');
       const closeBtn = document.querySelector('.close');
+      
+      console.log('Modal initialization:', { cards: cards.length, modal, modalContent, closeBtn }); // Debug log
       
       cards.forEach((card, index) => {
         // Add click and touch handlers
         const handleCardClick = (e) => {
           e.preventDefault();
           e.stopPropagation();
+          
+          console.log('Card clicked!', index, card); // Debug log
           
           // Add visual feedback
           card.style.transform = 'scale(0.98)';
@@ -2337,6 +2341,8 @@
           
           // Get experience data
           const experience = experienceData[index];
+          
+          console.log('Experience data:', experience); // Debug log
           
           if (experience) {
             // Create modal content
@@ -2392,6 +2398,25 @@
           setTimeout(() => {
             modal.style.display = 'none';
           }, 400);
+        }
+      });
+      
+      // Test modal functionality - press 'T' key to test
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 't' || e.key === 'T') {
+          console.log('Testing modal...');
+          if (modal && modalContent) {
+            modalContent.innerHTML = `
+              <h2>Test Modal</h2>
+              <div class="modal-company">Test Company</div>
+              <div class="modal-location">Test Location</div>
+              <p>This is a test modal to verify functionality.</p>
+            `;
+            modal.style.display = 'block';
+            setTimeout(() => {
+              modal.classList.add('show');
+            }, 10);
+          }
         }
       });
     });
@@ -2714,16 +2739,6 @@
       border: 0px solid transparent !important;
     }
   </style>
-
-  <!-- Modal for experience/research details -->
-  <div id="experienceModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div id="modalContent">
-        <!-- Dynamic content will be inserted here -->
-      </div>
-    </div>
-  </div>
 
   <!-- Background music -->
   <audio id="backgroundMusic" loop>
