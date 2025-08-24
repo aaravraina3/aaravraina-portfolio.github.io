@@ -684,7 +684,7 @@
             </div>
           </div>
           
-                     <p>Tech has been part of my life for as long as I can remember. As a toddler, I was dismantling remotes and rewiring toys. By middle school, I was building computers and teaching myself to code. <span style="background: rgba(255, 0, 255, 0.3); color: #ffffff;">At 17, I was deep into chess engines and noticed the school's online chess platform used a weak random seed that reset daily. Built a program that could predict opponent moves in their "random" practice matches. Posted about it on the chess forums and the platform devs reached out (paid me to help patch it, <em style="color: #00ffff;">ethically, of course</em>), and was hired to help fix their system.</span> Since then, I've been obsessed with finding these hidden patterns everywhere - using code to decode systems that everyone else assumes are random. Since then, I've been obsessed with finding ways to apply algorithmic reasoning—through machine learning, game theory, and probabilistic thinking—to real-world conflict and decision-making.</p>
+                     <p>Tech has been part of my life for as long as I can remember. As a toddler, I was dismantling remotes and rewiring toys. By middle school, I was building computers and teaching myself to code. <span style="background: rgba(255, 0, 255, 0.3); color: #ffffff;">At 17, online chess led me to discover a vulnerability in the school's online chess platform that used a weak random seed that reset daily. Built a program that could predict opponent moves in their "random" practice matches. Posted about it on the chess forums and the platform devs reached out (paid me to help patch it, <em style="color: #00ffff;">ethically, of course</em>), and was hired to help fix their system.</span> Since then, I've been obsessed with finding these hidden patterns everywhere - using code to decode systems that everyone else assumes are random. Since then, I've been obsessed with finding ways to apply algorithmic reasoning—through machine learning, game theory, and probabilistic thinking—to real-world conflict and decision-making.</p>
 
                     <p>I'm excited by projects that are <strong style="color: #ff00ff;">ambitious</strong>, <em style="color: #00ffff;">creative</em>, and <mark style="background: rgba(0, 255, 255, 0.15); color: #00ffff; padding: 0.2rem 0.4rem; border-radius: 4px;">technically challenging</mark>. I enjoy turning complex ideas into intuitive and functional digital experiences, whether it's a rough concept or a fully formed vision. When I'm not studying or coding, you'll find me at the gym finishing training with my <a href="https://www.instagram.com/northeasternbjj/" target="_blank" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">BJJ team</a> and pushing my limits with <a href="https://hevy.com/user/araina3" target="_blank" style="color: #ffffff; text-decoration: underline; text-decoration-color: #00ffff;">lifting and running</a>. I also like to play poker (my main source of income), and eat ramen (my main source of expenses).</p>
         </div>
@@ -886,26 +886,29 @@
       width: 27px;
       height: 30px;
       pointer-events: none;
-      z-index: 10000;
+      z-index: 999999;
       transition: transform 0.1s ease;
       display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translate(-50%, -50%);
     }
     
     .custom-cursor svg {
       width: 100%;
       height: 100%;
       display: block !important;
+      opacity: 1 !important;
     }
     
-    /* Mute container hover effects */
-    .mute-container:hover .mute-icon {
-      fill: #ff00ff !important;
-      filter: drop-shadow(0 0 15px rgba(255, 0, 255, 0.8)) !important;
+    /* Ensure cursor is visible on all elements */
+    * {
+      cursor: none !important;
     }
-
-    .mute-container:hover .mute-text {
-      color: #ff00ff !important;
-      text-shadow: 0 0 15px rgba(255, 0, 255, 0.5) !important;
+    
+    /* But allow pointer cursor on clickable elements */
+    a, button, .clickable, .project-card {
+      cursor: none !important;
     }
   </style>
 
@@ -1000,19 +1003,53 @@
     const customCursor = document.getElementById('custom-cursor');
     if (customCursor) {
       console.log('Custom cursor found, setting up mouse tracking');
+      
+      // Ensure cursor is visible initially
+      customCursor.style.display = 'block';
+      customCursor.style.opacity = '1';
+      
+      // Mouse move tracking
       document.addEventListener('mousemove', (e) => {
         customCursor.style.left = e.clientX + 'px';
         customCursor.style.top = e.clientY + 'px';
+        customCursor.style.display = 'block';
+        customCursor.style.opacity = '1';
       });
       
-      // Hide default cursor on hoverable elements
+      // Show cursor on any mouse activity
       document.addEventListener('mouseenter', () => {
         customCursor.style.display = 'block';
+        customCursor.style.opacity = '1';
       });
       
-      document.addEventListener('mouseleave', () => {
-        customCursor.style.display = 'none';
+      document.addEventListener('mousedown', () => {
+        customCursor.style.display = 'block';
+        customCursor.style.opacity = '1';
       });
+      
+      document.addEventListener('mouseup', () => {
+        customCursor.style.display = 'block';
+        customCursor.style.opacity = '1';
+      });
+      
+      // Hide cursor when leaving window
+      document.addEventListener('mouseleave', () => {
+        customCursor.style.opacity = '0';
+      });
+      
+      // Ensure cursor is visible on scroll
+      document.addEventListener('scroll', () => {
+        customCursor.style.display = 'block';
+        customCursor.style.opacity = '1';
+      });
+      
+      // Force cursor visibility every 100ms as backup
+      setInterval(() => {
+        if (customCursor.style.opacity === '0') {
+          customCursor.style.opacity = '1';
+        }
+      }, 100);
+      
     } else {
       console.log('Custom cursor element not found');
     }
