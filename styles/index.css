@@ -158,15 +158,16 @@ body {
 /* 3D Cube Container */
 #cube-container {
   position: fixed;
-  top: 2rem;
-  right: 2rem;
-  left: auto;
+  top: 50%;
+  left: 50%;
+  right: auto;
   width: 320px;
   height: 320px;
   z-index: 50;
   pointer-events: none;
   opacity: 1;
   transition: opacity 0.3s ease;
+  transform: translate(-50%, -50%);
 }
 
 #cube-canvas {
@@ -337,9 +338,10 @@ body {
 /* About page typing card - no responsive changes */
 .about-typing-card {
   position: fixed !important;
-  left: min(12rem, 29vw) !important;
-  top: min(10rem, 29vw) !important;
-  transform: rotate(-3deg) !important;
+  right: 2.5rem !important;
+  top: 2.5rem !important;
+  left: auto !important;
+  transform: rotate(7deg) translateY(18px) !important;
   z-index: 500;
   width: min(20rem, 58vw) !important;
   height: clamp(5rem, 8vw, 10rem) !important;
