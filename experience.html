@@ -1588,6 +1588,25 @@
           </model-viewer>
         </div>
 
+        <!-- 3D Tiger Head -->
+        <div class="tiger-container" style="position: fixed; top: 0vh; right: 50%; width: min(50%, 600px); height: 90vh; margin-top: 0;">
+          <model-viewer
+            src="Models/tiger_001.glb"
+            alt="3D Tiger Head"
+            auto-rotate
+            rotation-per-second="30deg"
+            camera-orbit="0deg 75deg 85%"
+            field-of-view="30deg"
+            shadow-intensity="0"
+            environment-image="neutral"
+            exposure="1"
+            shadow-softness="0"
+            loading="eager"
+            reveal="auto"
+            style="width: 100%; height: 100%;">
+          </model-viewer>
+        </div>
+
         <!-- Navigation Buttons -->
         <div class="nav-buttons permanent-buttons" style="position: absolute; top: 70vh; left: 50%; transform: translateX(-50%); z-index: 15;">
           <button class="nav-btn">About</button>
@@ -1638,22 +1657,26 @@
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <h3>Bachelor of Science in Computer Science & Finance</h3>
-              <div class="timeline-school">Northeastern University • Boston, MA</div>
+              <div class="timeline-school">Northeastern University</div>
               <div class="timeline-details">
                 <div class="course-grid">
-                  <span class="course-pill">Algorithms</span>
-                  <span class="course-pill">Data Structures</span>
+                  <span class="course-pill">Data Structures & Algorithms</span>
                   <span class="course-pill">Object Oriented Design</span>
-                  <span class="course-pill">Discrete Mathematics</span>
-                  <span class="course-pill">Linear Algebra</span>
-                  <span class="course-pill">Calculus</span>
-                  <span class="course-pill">Statistics</span>
+                  <span class="course-pill">Probability Theory</span>
+                  <span class="course-pill">Abstract Algebra</span>
+                  <span class="course-pill">Statistical Inference</span>
                 </div>
-                <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #00ffff;">Sep. 2024 – May 2028</div>
+                <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #00ffff;">Sep. 2024 – May 2028 • GPA: 3.51</div>
               </div>
             </div>
           </div>
         </div>
+ 
+ 
+
+ 
+ 
+
 
         <!-- Experience Section -->
         <div class="cards-container experience-cards">
@@ -1662,10 +1685,10 @@
             <div class="card-header">
               <h3>Chief of Internal Insights <span class="card-arrow">↗</span></h3>
               <div class="card-company">Generate Product Development Studio</div>
-              <div class="card-location">Jul. 2025 – Present</div>
+              <div class="card-location">Jul. 2025 – Present • Boston, MA</div>
             </div>
             <div class="card-preview">
-              <p>Building data analytics infrastructure for 150+ member organization, leading analytics team with direct reports managing sub-teams across multiple project verticals.</p>
+              <p>Building data analytics infrastructure from scratch for 150+ member organization; leading analytics team with direct reports managing sub-teams across multiple project verticals. Architecting Python pipelines (pandas, NumPy) tracking engagement metrics with PostgreSQL/Redis backend.</p>
             </div>
           </div>
 
@@ -1673,32 +1696,23 @@
             <div class="card-header">
               <h3>Software Engineering Intern <span class="card-arrow">↗</span></h3>
               <div class="card-company">GetFeedz Inc.</div>
-              <div class="card-location">Jun. 2024 – Aug. 2024</div>
+              <div class="card-location">Jun. 2024 – Aug. 2024 • Remote</div>
             </div>
             <div class="card-preview">
-              <p>Developed responsive React components reducing page load time by 35% for 10K+ daily active users through code optimization and lazy loading implementation.</p>
+              <p>Developed responsive React components with JavaScript that reduced page load time by 35% for 10K+ daily active users through code optimization and lazy loading implementation. Debugged complex state management issues using Chrome DevTools and React Developer Tools, successfully decreasing application crash rate from 12% to 3%.</p>
             </div>
           </div>
 
-          <div class="card experience-card" data-card="3">
-            <div class="card-header">
-              <h3>Data Analysis Research Assistant <span class="card-arrow">↗</span></h3>
-              <div class="card-company">International Hellenic University</div>
-              <div class="card-location">May 2024 – Jul. 2024</div>
-            </div>
-            <div class="card-preview">
-              <p>Designed efficient algorithms using Python and NumPy processing 1M+ healthcare records in under 30 seconds, reduced query latency by 10x through PostgreSQL optimization.</p>
-            </div>
-          </div>
+
 
           <div class="card experience-card" data-card="4">
             <div class="card-header">
               <h3>Executive Director <span class="card-arrow">↗</span></h3>
               <div class="card-company">NutriCycle Environmental Initiative</div>
-              <div class="card-location">Nov. 2023 – Jul. 2024</div>
+              <div class="card-location">Nov. 2023 – Jul. 2024 • Stamford, CT</div>
             </div>
             <div class="card-preview">
-              <p>Founded and led initiative mobilizing 200+ students to reduce food waste by 30%, built cloud-based tracking platform using Flask and PostgreSQL deployed on Render.</p>
+              <p>Founded and led initiative mobilizing 200+ students across multiple organizations to reduce food waste by 30%. Built cloud-based tracking platform using Flask and PostgreSQL, deployed on Render with 99% uptime.</p>
             </div>
           </div>
 
@@ -1707,32 +1721,23 @@
         <!-- Spacer between sections -->
         <div style="height: 2rem; margin: 1rem 0;"></div>
 
-        <!-- Projects Section -->
-        <div class="cards-container projects-cards">
+        <!-- Research Section -->
+        <div class="cards-container research-cards">
           
-          <div class="card project-card" data-card="1">
+          <div class="card research-card" data-card="1">
             <div class="card-header">
-              <h3>Jarvis - AI Personal Assistant <span class="card-arrow">↗</span></h3>
-              <div class="card-company">Python, FastAPI, React, PostgreSQL, Redis, Docker</div>
-              <div class="card-location">Jul. 2025 – Present</div>
+              <h3>Data Analysis Research Assistant <span class="card-arrow">↗</span></h3>
+              <div class="card-company">International Hellenic University</div>
+              <div class="card-location">May 2024 – Jul. 2024 • Remote</div>
             </div>
             <div class="card-preview">
-              <p>Building microservices architecture with FastAPI, implementing real-time notifications using WebSockets, integrating LLMs for natural language processing.</p>
-            </div>
-          </div>
-
-          <div class="card project-card" data-card="2">
-            <div class="card-header">
-              <h3>Stock Market Analysis Tool <span class="card-arrow">↗</span></h3>
-              <div class="card-company">Python, Flask, React, pandas, scikit-learn, yfinance API</div>
-              <div class="card-location">Aug. 2024 – Oct. 2024</div>
-            </div>
-            <div class="card-preview">
-              <p>Built full-stack application with ML models for stock prediction, implemented Redis caching reducing API calls by 70%, optimized data processing achieving 5x performance improvement.</p>
+              <p>Designed efficient algorithms using Python and NumPy processing 1M+ healthcare records in under 30 seconds. Reduced query latency by 10x through PostgreSQL database indexing and query optimization techniques. Built fault-tolerant automation tools using Python scripts achieving 99.5% reliability and saving 20+ hours weekly.</p>
             </div>
           </div>
 
         </div>
+
+
 
         <!-- Resume Link beneath research -->
         <div style="text-align: center; margin: 4rem 0;">
@@ -1753,10 +1758,10 @@
   </div>
 
   <script>
-    // Experience and Projects Spotlight System
+    // Experience and Research Spotlight System
     document.addEventListener('DOMContentLoaded', () => {
       const experienceCards = document.querySelectorAll('.experience-card');
-      const projectCards = document.querySelectorAll('.project-card');
+      const researchCards = document.querySelectorAll('.research-card');
       
       // Experience cards spotlight
       experienceCards.forEach(card => {
@@ -1795,11 +1800,11 @@
         });
       });
       
-      // Project cards spotlight
-      projectCards.forEach(card => {
+      // Research cards spotlight
+      researchCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
-          // Remove spotlight from all project cards
-          projectCards.forEach(c => {
+          // Remove spotlight from all research cards
+          researchCards.forEach(c => {
             c.classList.remove('spotlight');
             c.style.opacity = '0.6';
             c.style.transform = 'scale(0.95)';
@@ -1822,8 +1827,8 @@
           card.style.filter = 'grayscale(0%)';
           card.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.1)';
           
-          // Reset all project cards to normal
-          projectCards.forEach(c => {
+          // Reset all research cards to normal
+          researchCards.forEach(c => {
             c.style.opacity = '1';
             c.style.transform = 'scale(1)';
             c.style.filter = 'grayscale(0%)';
@@ -2444,39 +2449,8 @@
       }
     });
 
-    // Experience and Research data for modals
-    const experienceData = {
-      0: { // Data & Analytics at Flushing CPA
-        title: "Data & Analytics",
-        company: "Flushing CPA Tax Center",
-        location: "Spring 2024",
-        description: "• Designed and implemented automated data extraction, transformation, and loading processes to handle large-scale tax datasets from multiple sources, reducing manual processing time by 25% while improving financial projection accuracy by 15%.<br>&nbsp;<br>• Created VBA macros and automated workflows to systematically scan 300+ client tax records for compliance issues, implementing alert systems that reduced compliance review time by 30%.<br>&nbsp;<br>• Constructed predictive statistical models using historical financial data and industry benchmarks to forecast quarterly tax liabilities for 150+ small and medium business clients with 85% accuracy.<br>&nbsp;<br>• Established standardized data processing workflows and maintained centralized tax databases, achieving 98% data accuracy and supporting seamless operations during peak tax season periods."
-      },
-      1: { // Legal Research at Jonathan Spodnick
-        title: "Legal Research Intern",
-        company: "Offices of Jonathan Spodnick",
-        location: "Fall 2023",
-        description: "• Researched legal cases and prepared court documents including motions, briefs, and discovery materials for 25+ personal injury lawsuits.<br>&nbsp;<br>• Built a Python-based natural language processing tool to automatically categorize legal documents, reducing manual review time by 40%.<br>&nbsp;<br>• Applied statistical analysis to examine injury claim patterns and settlement data across 200+ cases, informing case valuation strategies.<br>&nbsp;<br>• Streamlined document processing workflows and maintained organized case databases, improving case preparation efficiency by 35%."
-      },
-      2: { // Fintech Analyst at CITIC
-        title: "Fintech Analyst",
-        company: "CITIC Securities",
-        location: "Summer 2023",
-        description: "• Assisted in preparing a listing proposal for an $11 billion spaceflight network company by developing data-driven presentations that showcased CITIC's core investment banking capabilities and sector expertise.<br>&nbsp;<br>• Analyzed socio-political impacts on China's financial markets during CITIC's RMB regulatory penalty, collaborating with a 9-person team to develop risk mitigation strategies that minimized adverse effects on stock price performance.<br>&nbsp;<br>• Supported the preparation and documentation of an $18 billion convertible bond prospectus for a regional banking client, ensuring regulatory compliance and investor disclosure requirements.<br>&nbsp;<br>• Contributed to deal structuring and financial modeling processes across multiple high-value transactions, supporting senior analysts in client relationship management and transaction execution."
-      },
-      3: { // DoD Research Assistant
-        title: "Military Tech Analyst",
-  company: "Northeastern University",
-        location: "Summer 2025",
-        description: "• Transcribed and analyzed military technology proposals from BOF Annual Reports (1897-1908), systematically cataloging over 200+ inventions including subject details, proposer information, and military adoption outcomes across 11 annual reporting periods.<br>&nbsp;<br>• Evaluated technological significance and historical impact of proposed military innovations, providing evidence-based recommendations for deeper research prioritization while assessing factors including adoption success, technological advancement, and lasting influence on modern defense systems.<br>&nbsp;<br>• Synthesized findings from diverse primary and secondary sources including patent databases, military testing records, newspaper archives, and academic collections to create comprehensive technology profiles supporting ongoing historical military innovation research initiatives."
-      },
-      4: { // PPPL Research Assistant
-        title: "Research Assistant", 
-        company: "Princeton Plasma Physics Lab (PPPL)",
-        location: "Summer 2024",
-        description: "• Analyzed plasma confinement mechanisms to study charged particle behavior within tokamak reactor configurations, examining magnetic field interactions and particle trajectory dynamics.<br>&nbsp;<br>• Simulated the effects of magnetic field strength variations and plasma density changes on reactor performance metrics, identifying optimal operating parameters for maximum energy output efficiency.<br>&nbsp;<br>• Developed statistical models to predict fusion reaction rates under different operating conditions, incorporating plasma temperature, density, and confinement variables to forecast reactor performance.<br>&nbsp;<br>• Collaborated with research team to validate simulation results against experimental data, contributing to ongoing fusion energy research and reactor optimization studies."
-      }
-    };
+    // Experience and Projects data for modals (if needed in the future)
+    const experienceData = {};
 
     // Card click functionality with modal support
     document.addEventListener('DOMContentLoaded', () => {

@@ -1545,9 +1545,9 @@ body[data-current-route="home"] .mobile-menu-btn {
   text-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
 }
 
-/* Experience and Projects Spotlight System */
-.experience-card, .project-card {
-  transition: all 0.3s ease;
+/* Experience and Research Spotlight System */
+.experience-card, .research-card {
+  transition: all 0.2s ease;
   cursor: pointer;
   position: relative;
 }
@@ -1557,7 +1557,7 @@ body[data-current-route="home"] .mobile-menu-btn {
   box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
 }
 
-.project-card:hover {
+.research-card:hover {
   transform: scale(1.02);
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
 }
@@ -1570,7 +1570,7 @@ body[data-current-route="home"] .mobile-menu-btn {
   z-index: 10;
 }
 
-.project-card.spotlight {
+.research-card.spotlight {
   opacity: 1 !important;
   transform: scale(1.02) !important;
   filter: grayscale(0%) !important;
@@ -1583,19 +1583,19 @@ body[data-current-route="home"] .mobile-menu-btn {
   opacity: 0.6;
   transform: scale(0.95);
   filter: grayscale(20%);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-/* When hovering over project cards, dim others */
-.projects-cards:hover .project-card:not(:hover) {
+/* When hovering over research cards, dim others */
+.research-cards:hover .research-card:not(:hover) {
   opacity: 0.6;
   transform: scale(0.95);
   filter: grayscale(20%);
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 /* Smooth transitions for all cards */
-.experience-card, .project-card {
+.experience-card, .research-card {
   opacity: 1;
   transform: scale(1);
   filter: grayscale(0%);
