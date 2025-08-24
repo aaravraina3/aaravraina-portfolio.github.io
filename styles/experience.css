@@ -1545,8 +1545,8 @@ body[data-current-route="home"] .mobile-menu-btn {
   text-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
 }
 
-/* Experience Spotlight System */
-.experience-card {
+/* Experience and Projects Spotlight System */
+.experience-card, .project-card {
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
@@ -1557,6 +1557,11 @@ body[data-current-route="home"] .mobile-menu-btn {
   box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
 }
 
+.project-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
 .experience-card.spotlight {
   opacity: 1 !important;
   transform: scale(1.02) !important;
@@ -1565,7 +1570,15 @@ body[data-current-route="home"] .mobile-menu-btn {
   z-index: 10;
 }
 
-/* When hovering over a card, dim others */
+.project-card.spotlight {
+  opacity: 1 !important;
+  transform: scale(1.02) !important;
+  filter: grayscale(0%) !important;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3) !important;
+  z-index: 10;
+}
+
+/* When hovering over experience cards, dim others */
 .experience-cards:hover .experience-card:not(:hover) {
   opacity: 0.6;
   transform: scale(0.95);
@@ -1573,8 +1586,16 @@ body[data-current-route="home"] .mobile-menu-btn {
   transition: all 0.3s ease;
 }
 
+/* When hovering over project cards, dim others */
+.projects-cards:hover .project-card:not(:hover) {
+  opacity: 0.6;
+  transform: scale(0.95);
+  filter: grayscale(20%);
+  transition: all 0.3s ease;
+}
+
 /* Smooth transitions for all cards */
-.experience-card {
+.experience-card, .project-card {
   opacity: 1;
   transform: scale(1);
   filter: grayscale(0%);

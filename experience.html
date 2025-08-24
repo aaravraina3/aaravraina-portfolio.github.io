@@ -1708,9 +1708,9 @@
         <div style="height: 2rem; margin: 1rem 0;"></div>
 
         <!-- Projects Section -->
-        <div class="cards-container research-cards">
+        <div class="cards-container projects-cards">
           
-          <div class="card">
+          <div class="card project-card" data-card="1">
             <div class="card-header">
               <h3>Jarvis - AI Personal Assistant <span class="card-arrow">↗</span></h3>
               <div class="card-company">Python, FastAPI, React, PostgreSQL, Redis, Docker</div>
@@ -1721,13 +1721,13 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card project-card" data-card="2">
             <div class="card-header">
               <h3>Stock Market Analysis Tool <span class="card-arrow">↗</span></h3>
               <div class="card-company">Python, Flask, React, pandas, scikit-learn, yfinance API</div>
               <div class="card-location">Aug. 2024 – Oct. 2024</div>
             </div>
-              <div class="card-preview">
+            <div class="card-preview">
               <p>Built full-stack application with ML models for stock prediction, implemented Redis caching reducing API calls by 70%, optimized data processing achieving 5x performance improvement.</p>
             </div>
           </div>
@@ -1753,14 +1753,15 @@
   </div>
 
   <script>
-    // Experience Spotlight System
+    // Experience and Projects Spotlight System
     document.addEventListener('DOMContentLoaded', () => {
       const experienceCards = document.querySelectorAll('.experience-card');
+      const projectCards = document.querySelectorAll('.project-card');
       
+      // Experience cards spotlight
       experienceCards.forEach(card => {
-        // Add hover effects
         card.addEventListener('mouseenter', () => {
-          // Remove spotlight from all cards
+          // Remove spotlight from all experience cards
           experienceCards.forEach(c => {
             c.classList.remove('spotlight');
             c.style.opacity = '0.6';
@@ -1784,8 +1785,45 @@
           card.style.filter = 'grayscale(0%)';
           card.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.1)';
           
-          // Reset all cards to normal
+          // Reset all experience cards to normal
           experienceCards.forEach(c => {
+            c.style.opacity = '1';
+            c.style.transform = 'scale(1)';
+            c.style.filter = 'grayscale(0%)';
+            c.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.1)';
+          });
+        });
+      });
+      
+      // Project cards spotlight
+      projectCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          // Remove spotlight from all project cards
+          projectCards.forEach(c => {
+            c.classList.remove('spotlight');
+            c.style.opacity = '0.6';
+            c.style.transform = 'scale(0.95)';
+            c.style.filter = 'grayscale(20%)';
+          });
+          
+          // Add spotlight to current card
+          card.classList.add('spotlight');
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1.02)';
+          card.style.filter = 'grayscale(0%)';
+          card.style.boxShadow = '0 0 30px rgba(0, 255, 255, 0.3)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          // Remove spotlight from current card
+          card.classList.remove('spotlight');
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+          card.style.filter = 'grayscale(0%)';
+          card.style.boxShadow = '0 0 20px rgba(255, 255, 255, 0.1)';
+          
+          // Reset all project cards to normal
+          projectCards.forEach(c => {
             c.style.opacity = '1';
             c.style.transform = 'scale(1)';
             c.style.filter = 'grayscale(0%)';
