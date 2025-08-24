@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thomas Ou • Portfolio</title>
+  <title>Aarav Raina • Portfolio</title>
   <!-- Google Fonts for modern look -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700,400|Inter:400,600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&display=swap" rel="stylesheet">
@@ -438,9 +438,9 @@
     /* About page typing card - no responsive changes */
     .about-typing-card {
       position: fixed !important;
-      left: min(12rem, 29vw) !important;
-      top: min(10rem, 29vw) !important;
-      transform: rotate(-3deg) !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) rotate(-3deg) !important;
       z-index: 500;
       width: min(20rem, 58vw) !important;
       height: clamp(5rem, 8vw, 10rem) !important;
@@ -559,12 +559,11 @@
     
     <!-- Name animation -->
     <div class="startup-name-text">
-      <span>T</span>
-      <span>H</span>
-      <span>O</span>
-      <span>M</span>
       <span>A</span>
-      <span>S</span>
+      <span>A</span>
+      <span>R</span>
+      <span>A</span>
+      <span>V</span>
     </div>
 
     <!-- Click button -->
@@ -579,10 +578,10 @@
   </svg>
 
   
-  <!-- Thomas Ou heading -->
+  <!-- Aarav Raina heading -->
   <div class="name-heading">
-    <div>Thomas</div>
-    <div>Ou</div>
+    <div>Aarav</div>
+    <div>Raina</div>
   </div>
 
   <!-- About page typing card -->
@@ -610,7 +609,7 @@
   <script>
     // TYPING ANIMATION FOR ABOUT PAGE
     const aboutRoles = [
-      "Frontend Dev",
+      "Backend Dev",
       "Mathematician", 
       "AI Engineer",
       "Statistical Analyst",
@@ -922,7 +921,7 @@
           cubeScene.add(cube);
           
           // Position camera - centered view
-          cubeCamera.position.z = 8;
+          cubeCamera.position.z = 10;
           cubeCamera.position.y = 0;
           
           // Animation loop for cube
@@ -942,7 +941,7 @@
               cube.rotation.z = cubeTime * 0.3;
               
               // Floating motion
-              cube.position.y = Math.sin(cubeTime * 0.6) * 0.5;
+              cube.position.y = Math.sin(cubeTime * 0.6) * 0.3;
               cube.position.x = Math.cos(cubeTime * 0.4) * 0.3;
               
               // Update material with pulsing effect
