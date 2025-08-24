@@ -606,35 +606,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Experience and Research data for modals
 const experienceData = {
-  0: { // Data & Analytics at Flushing CPA
-    title: "Data & Analytics",
-    company: "Flushing CPA Tax Center",
-    location: "Spring 2024",
-    description: "• Designed and implemented automated data extraction, transformation, and loading processes to handle large-scale tax datasets from multiple sources, reducing manual processing time by 25% while improving financial projection accuracy by 15%.<br>&nbsp;<br>• Created VBA macros and automated workflows to systematically scan 300+ client tax records for compliance issues, implementing alert systems that reduced compliance review time by 30%.<br>&nbsp;<br>• Constructed predictive statistical models using historical financial data and industry benchmarks to forecast quarterly tax liabilities for 150+ small and medium business clients with 85% accuracy.<br>&nbsp;<br>• Established standardized data processing workflows and maintained centralized tax databases, achieving 98% data accuracy and supporting seamless operations during peak tax season periods."
+  0: { // Chief of Internal Insights
+    title: "Chief of Internal Insights",
+    company: "Generate Product Development Studio",
+    location: "Jul. 2025 – Present",
+    description: "• Building data analytics infrastructure from scratch for 150+ member organization; leading analytics team with direct reports managing sub-teams across multiple project verticals<br>&nbsp;<br>• Architecting Python pipelines (pandas, NumPy) tracking engagement metrics with PostgreSQL/Redis backend<br>&nbsp;<br>• Developing alumni tracking system connecting members with 10,000+ alumni using BeautifulSoup web scraping and Slack API integration; automating outreach campaigns resulting in 40+ mentorship connections<br>&nbsp;<br>• Presenting weekly insights driving strategic decisions on resource allocation; building React/Chart.js dashboards accessed by leadership to monitor KPIs and make data-driven program improvements"
   },
-  1: { // Legal Research at Jonathan Spodnick
-    title: "Legal Research Intern",
-    company: "Offices of Jonathan Spodnick",
-    location: "Fall 2023",
-    description: "• Researched legal cases and prepared court documents including motions, briefs, and discovery materials for 25+ personal injury lawsuits.<br>&nbsp;<br>• Built a Python-based natural language processing tool to automatically categorize legal documents, reducing manual review time by 40%.<br>&nbsp;<br>• Applied statistical analysis to examine injury claim patterns and settlement data across 200+ cases, informing case valuation strategies.<br>&nbsp;<br>• Streamlined document processing workflows and maintained organized case databases, improving case preparation efficiency by 35%."
+  1: { // Software Engineering Intern
+    title: "Software Engineering Intern",
+    company: "GetFeedz Inc.",
+    location: "Jun. 2024 – Aug. 2024",
+    description: "• Developed responsive React components with JavaScript that reduced page load time by 35% for 10K+ daily active users through code optimization and lazy loading implementation<br>&nbsp;<br>• Debugged complex state management issues using Chrome DevTools and React Developer Tools, successfully decreasing application crash rate from 12% to 3% over the internship period<br>&nbsp;<br>• Wrote comprehensive unit tests using Jest framework achieving 85% code coverage and collaborated in Agile environment using Jira for sprint planning and GitHub for code reviews"
   },
-  2: { // Fintech Analyst at CITIC
-    title: "Fintech Analyst",
-    company: "CITIC Securities",
-    location: "Summer 2023",
-    description: "• Assisted in preparing a listing proposal for an $11 billion spaceflight network company by developing data-driven presentations that showcased CITIC's core investment banking capabilities and sector expertise.<br>&nbsp;<br>• Analyzed socio-political impacts on China's financial markets during CITIC's RMB regulatory penalty, collaborating with a 9-person team to develop risk mitigation strategies that minimized adverse effects on stock price performance.<br>&nbsp;<br>• Supported the preparation and documentation of an $18 billion convertible bond prospectus for a regional banking client, ensuring regulatory compliance and investor disclosure requirements.<br>&nbsp;<br>• Contributed to deal structuring and financial modeling processes across multiple high-value transactions, supporting senior analysts in client relationship management and transaction execution."
+  2: { // Data Analysis Research Assistant
+    title: "Data Analysis Research Assistant",
+    company: "International Hellenic University",
+    location: "May 2024 – Jul. 2024",
+    description: "• Designed efficient algorithms using Python and NumPy processing 1M+ healthcare records in under 30 seconds<br>&nbsp;<br>• Reduced query latency by 10x through PostgreSQL database indexing and query optimization techniques<br>&nbsp;<br>• Built fault-tolerant automation tools using Python scripts achieving 99.5% reliability and saving 20+ hours weekly"
   },
-  3: { // DoD Research Assistant
-    title: "Military Tech Analyst",
-    company: "University Of Pennsylvania",
-    location: "Summer 2025",
-    description: "• Transcribed and analyzed military technology proposals from BOF Annual Reports (1897-1908), systematically cataloging over 200+ inventions including subject details, proposer information, and military adoption outcomes across 11 annual reporting periods.<br>&nbsp;<br>• Evaluated technological significance and historical impact of proposed military innovations, providing evidence-based recommendations for deeper research prioritization while assessing factors including adoption success, technological advancement, and lasting influence on modern defense systems.<br>&nbsp;<br>• Synthesized findings from diverse primary and secondary sources including patent databases, military testing records, newspaper archives, and academic collections to create comprehensive technology profiles supporting ongoing historical military innovation research initiatives."
-  },
-  4: { // PPPL Research Assistant
-    title: "Research Assistant", 
-    company: "Princeton Plasma Physics Lab (PPPL)",
-    location: "Summer 2024",
-    description: "• Analyzed plasma confinement mechanisms to study charged particle behavior within tokamak reactor configurations, examining magnetic field interactions and particle trajectory dynamics.<br>&nbsp;<br>• Simulated the effects of magnetic field strength variations and plasma density changes on reactor performance metrics, identifying optimal operating parameters for maximum energy output efficiency.<br>&nbsp;<br>• Developed statistical models to predict fusion reaction rates under different operating conditions, incorporating plasma temperature, density, and confinement variables to forecast reactor performance.<br>&nbsp;<br>• Collaborated with research team to validate simulation results against experimental data, contributing to ongoing fusion energy research and reactor optimization studies."
+  3: { // Executive Director
+    title: "Executive Director",
+    company: "NutriCycle Environmental Initiative",
+    location: "Nov. 2023 – Jul. 2024",
+    description: "• Founded and led initiative mobilizing 200+ students across multiple organizations to reduce food waste by 30%<br>&nbsp;<br>• Built cloud-based tracking platform using Flask and PostgreSQL, deployed on Render with 99% uptime"
   }
 };
 
