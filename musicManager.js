@@ -48,11 +48,14 @@ class MusicManager {
     }
 
     // Initialize mute icon to correct state
-    this.updateMuteIcon(!this.userMuted);
-    console.log('Music setup complete, icon initialized to:', !this.userMuted ? 'playing' : 'muted');
+    this.updateMuteIcon();
+    console.log('Music setup complete, icon initialized to:', this.userMuted ? 'muted' : 'playing');
 
     // Setup event listeners
     this.setupEventListeners();
+    
+    // Restore music state from previous session
+    this.restoreMusicState();
     
     // Try to auto-start only if user hasn't explicitly muted
     if (!this.userMuted) {
@@ -73,7 +76,7 @@ class MusicManager {
         }
       } else {
         // Page visible - only resume if user hadn't muted
-        if (!this.userMuted) {
+        if (!this.userMuted && this.backgroundMusic) {
           this.resumeMusic();
         }
       }
@@ -81,7 +84,7 @@ class MusicManager {
 
     // Window focus - only resume if user hadn't muted
     window.addEventListener('focus', () => {
-      if (!this.userMuted) {
+      if (!this.userMuted && this.backgroundMusic) {
         this.resumeMusic();
       }
     });
@@ -99,10 +102,10 @@ class MusicManager {
   }
 
   toggleMusic() {
-    if (this.isPlaying) {
-      this.muteMusic();
-    } else {
+    if (this.userMuted) {
       this.unmuteMusic();
+    } else {
+      this.muteMusic();
     }
   }
 
@@ -110,20 +113,22 @@ class MusicManager {
     this.userMuted = true;
     this.isPlaying = false;
     this.pauseMusic();
-    this.updateMuteIcon(false);
+    this.updateMuteIcon();
     
     // Store preference in localStorage
     localStorage.setItem('musicMuted', 'true');
+    console.log('Music muted');
   }
 
   unmuteMusic() {
     this.userMuted = false;
     this.isPlaying = true;
     this.resumeMusic();
-    this.updateMuteIcon(true);
+    this.updateMuteIcon();
     
     // Store preference in localStorage
     localStorage.setItem('musicMuted', 'false');
+    console.log('Music unmuted');
   }
 
   pauseMusic() {
@@ -133,26 +138,39 @@ class MusicManager {
     if (this.hoverMusic) {
       this.hoverMusic.pause();
     }
+    this.isPlaying = false;
   }
 
   resumeMusic() {
     if (this.userMuted) return; // Don't resume if user muted
     
     if (this.backgroundMusic && this.backgroundMusic.volume > 0) {
-      this.backgroundMusic.play().catch(e => console.log('Background music resume failed:', e));
+      this.backgroundMusic.play().then(() => {
+        this.isPlaying = true;
+        console.log('Background music resumed');
+      }).catch(e => {
+        console.log('Background music resume failed:', e);
+        this.isPlaying = false;
+      });
     }
     if (this.hoverMusic && this.hoverMusic.volume > 0) {
-      this.hoverMusic.play().catch(e => console.log('Hover music resume failed:', e));
+      this.hoverMusic.play().then(() => {
+        console.log('Hover music resumed');
+      }).catch(e => {
+        console.log('Hover music resume failed:', e);
+      });
     }
   }
 
-  updateMuteIcon(isPlaying) {
+  updateMuteIcon() {
     if (!this.muteIcon) return;
     
     const mutedIcon = `<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>`;
     const playingIcon = `<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>`;
     
-    this.muteIcon.innerHTML = isPlaying ? playingIcon : mutedIcon;
+    // Show muted icon when user has muted, playing icon when not muted
+    this.muteIcon.innerHTML = this.userMuted ? mutedIcon : playingIcon;
+    console.log('Icon updated to:', this.userMuted ? 'muted' : 'playing');
   }
 
   fadeToHover() {
@@ -228,7 +246,7 @@ class MusicManager {
     if (!this.isPlaying && this.backgroundMusic) {
       this.backgroundMusic.play().then(() => {
         this.isPlaying = true;
-        this.updateMuteIcon(true);
+        this.updateMuteIcon();
         console.log('Music auto-started successfully');
       }).catch(e => {
         console.log('Auto-start failed, waiting for user interaction:', e);
@@ -255,6 +273,38 @@ class MusicManager {
 
   isMuted() {
     return this.userMuted;
+  }
+
+  // Handle page navigation - preserve music state
+  handlePageNavigation() {
+    // Save current state before navigation
+    if (this.backgroundMusic) {
+      localStorage.setItem('musicTime', this.backgroundMusic.currentTime);
+      localStorage.setItem('musicVolume', this.backgroundMusic.volume);
+    }
+    
+    // Ensure music is paused during navigation
+    this.pauseMusic();
+  }
+
+  // Restore music state after navigation
+  restoreMusicState() {
+    // Restore volume
+    if (this.backgroundMusic) {
+      const savedVolume = localStorage.getItem('musicVolume');
+      if (savedVolume) {
+        this.backgroundMusic.volume = parseFloat(savedVolume);
+      }
+      
+      // Restore time position
+      const savedTime = localStorage.getItem('musicTime');
+      if (savedTime) {
+        this.backgroundMusic.currentTime = parseFloat(savedTime);
+      }
+    }
+    
+    // Update icon to reflect current state
+    this.updateMuteIcon();
   }
 }
 
