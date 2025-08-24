@@ -343,6 +343,21 @@ body {
   transform: scale(1.1);
 }
 
+/* Custom div icons for AI tools */
+.icon-container div {
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.icon-container:hover div {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
 .icon-tooltip {
   position: absolute;
   top: 50%;
