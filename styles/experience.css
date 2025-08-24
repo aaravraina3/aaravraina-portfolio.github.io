@@ -54,9 +54,9 @@ body {
 /* Full width content */
 .content-section {
   width: 100%;
-  height: (500vh - 180vw);
+  height: 400vh;
   padding: 2rem 2rem 0 2rem;
-  overflow: visible;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;

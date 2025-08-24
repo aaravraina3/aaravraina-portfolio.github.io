@@ -10,6 +10,12 @@ class MusicManager {
     this.userMuted = false; // Track user's explicit mute preference
     this.currentFadeInterval = null;
     
+    // Load saved mute preference from localStorage
+    const savedMuteState = localStorage.getItem('musicMuted');
+    if (savedMuteState === 'true') {
+      this.userMuted = true;
+    }
+    
     this.init();
   }
 
@@ -62,7 +68,7 @@ class MusicManager {
         }
       } else {
         // Page visible - only resume if user hadn't muted
-        if (!this.userMuted && this.backgroundMusic.volume > 0) {
+        if (!this.userMuted) {
           this.resumeMusic();
         }
       }
@@ -70,7 +76,7 @@ class MusicManager {
 
     // Window focus - only resume if user hadn't muted
     window.addEventListener('focus', () => {
-      if (!this.userMuted && this.backgroundMusic.volume > 0) {
+      if (!this.userMuted) {
         this.resumeMusic();
       }
     });
