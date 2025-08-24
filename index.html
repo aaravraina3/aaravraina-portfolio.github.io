@@ -593,35 +593,7 @@
   </div>
 
   <!-- Poker Nerd Tag -->
-  <div class="poker-nerd-tag">
-    <span>♠️ Poker Nerd</span>
-  </div>
-    /* Poker Nerd Tag Styling */
-    .poker-nerd-tag {
-      position: fixed;
-      left: 50%;
-      top: calc(60% + 4.5rem);
-      transform: translateX(-50%);
-      z-index: 600;
-      background: rgba(0,0,0,0.55);
-      border: 2px solid #ff00ff;
-      border-radius: 1.2rem;
-      box-shadow: 0 0 18px #ff00ff55, 0 0 30px #00ffff33;
-      padding: 0.7rem 2.2rem;
-      font-family: 'Fira Mono', 'Courier New', monospace;
-      font-size: 1.25rem;
-      color: #fff;
-      letter-spacing: 0.08em;
-      text-align: center;
-      text-shadow: 0 0 8px #ff00ff99, 0 0 12px #00ffff66;
-      user-select: none;
-      pointer-events: none;
-      animation: pokerNerdFadeIn 1.2s cubic-bezier(.4,1.4,.6,1) 0.5s both;
-    }
-    @keyframes pokerNerdFadeIn {
-      from { opacity: 0; transform: translateX(-50%) translateY(-30px) scale(0.95); }
-      to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-    }
+
 
 
   <!-- About Container -->
@@ -637,6 +609,10 @@
     </div>
     
     <div class="about-content">
+      <div class="about-description" style="max-width: 480px; margin: 2.5rem auto 0 auto; background: rgba(0,0,0,0.55); border-radius: 1.2rem; border: 2px solid #00ffff; box-shadow: 0 4px 18px #00ffff33; padding: 2.2rem 2.2rem 1.2rem 2.2rem; color: #fff; font-family: 'Inter', Arial, sans-serif; font-size: 1.18rem; line-height: 1.6; position: relative; z-index: 10; text-align: left;">
+        Hi, I'm Aarav Raina. I'm a software developer, mathematician, and AI engineer passionate about building full-stack systems, large language models, and creative projects. I study Computer Science and Finance at Northeastern University, and I love working on technically challenging ideas that blend math, code, and design. When I'm not coding, you'll find me training with my BJJ team, playing poker, or eating ramen.
+      </div>
+      <!-- The above description is now visible and styled, and will not overlap the cube. -->
     </div>
   </div>
 
